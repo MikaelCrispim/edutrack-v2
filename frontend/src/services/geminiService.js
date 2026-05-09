@@ -52,7 +52,7 @@ export async function generateInsightsWithGemini(subjects, tasksBySubject) {
 
   const prompt = `Você é um assistente educacional inteligente especializado em ajudar estudantes universitários e técnicos a melhorarem seu desempenho acadêmico.
 
-Analise os dados acadêmicos abaixo e gere exatamente 3 insights personalizados, práticos e motivadores em português.
+Analise os dados acadêmicos abaixo e gere exatamente 2 insights personalizados, práticos e motivadores em português.
 
 DADOS DO ESTUDANTE:
 ${studentContext}
