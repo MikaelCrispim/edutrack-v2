@@ -218,7 +218,7 @@ function Register() {
 
         {/* Footer */}
         <div className="mt-6 text-center text-xs text-gray-500">
-          <p>© 2024 EduTrack. All rights reserved.</p>
+          <p>© 2026 EduTrack. All rights reserved.</p>
         </div>
       </div>
     </div>

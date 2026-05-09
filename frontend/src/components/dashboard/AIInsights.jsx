@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getAIInsights, generateAIInsights, deleteAIInsight } from '../../api';
+import { getAIInsights, deleteAIInsight, getSubjects, getTasksBySubject, saveAIInsight } from '../../api';
+import { generateInsightsWithGemini } from '../../services/geminiService';
 
 const AIInsights = () => {
   const [insights, setInsights] = useState([]);
@@ -25,17 +26,37 @@ const AIInsights = () => {
     setGenerating(true);
     setError(null);
     try {
-      const response = await generateAIInsights();
-      console.log('Generated insights:', response.data);
-      // Refetch insights after generating
+      // 1. Fetch student data from Xano
+      const subjectsRes = await getSubjects();
+      const subjects = subjectsRes.data;
+
+      if (!subjects || subjects.length === 0) {
+        throw new Error('Please add some subjects first to generate meaningful insights.');
+      }
+
+      // 2. Fetch tasks for each subject to build full context
+      const tasksBySubject = {};
+      let userId = null;
+
+      await Promise.all(subjects.map(async (subject) => {
+        if (!userId && subject.user_id) userId = subject.user_id;
+        const tasksRes = await getTasksBySubject(subject.id);
+        tasksBySubject[subject.id] = tasksRes.data || [];
+      }));
+
+      // 3. Generate insights directly via Gemini
+      const insightsArray = await generateInsightsWithGemini(subjects, tasksBySubject);
+
+      // 4. Persist each insight to Xano
+      await Promise.all(insightsArray.map(text => saveAIInsight(text, userId)));
+
+      // 5. Refresh the list
       await fetchInsights();
     } catch (err) {
-      setError('Failed to generate AI insights. Please try again.');
-      console.error('Error generating insights:', err);
+      setError(err.message || 'Failed to generate AI insights. Please try again.');
+      console.error('Error in AI direct integration flow:', err);
+    } finally {
       setGenerating(false);
-    }
-    finally {
-      setLoading(false);
     }
   };
 

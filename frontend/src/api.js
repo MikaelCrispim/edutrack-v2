@@ -100,3 +100,7 @@ export const deleteAIInsight = (id) => {
   return apiClient.delete(`/ai_insights/${id}`);
 };
 
+export const saveAIInsight = (text, userId) => {
+  return apiClient.post('/ai_insights', { text, user_id: userId });
+};
+
