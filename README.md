@@ -1,6 +1,6 @@
 # EduTrack AI - Assistente Educacional Personalizado
 
-**Versão:** 1.0  
+**Versão:** 2.0  
 **Status:** Em Desenvolvimento  
 **Tecnologias:** React + Vite + Tailwind CSS + Xano + OpenSpec  
 
