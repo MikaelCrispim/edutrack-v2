@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getSubjects, deleteSubject } from '../../api';
 import SubjectCard from './SubjectCard';
+import SearchBar from '../SearchBar';
 
 function SubjectList() {
   const [subjects, setSubjects] = useState([]);
+  const [filteredSubjects, setFilteredSubjects] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -13,13 +16,14 @@ function SubjectList() {
     setLoading(true);
     try {
       const response = await getSubjects();
-      setSubjects(response.data);
+      setSubjects(response.data || []);
+      setFilteredSubjects(response.data || []);
     } catch (err) {
       const token = localStorage.getItem('token');
       if (!token) {
-        setError('You must be logged in to see subjects. Please log in and try again.');
+        setError('Você precisa estar logado para ver as disciplinas. Por favor, faça login.');
       } else {
-        setError(err.response?.data?.message || 'An error occurred while fetching subjects.');
+        setError(err.response?.data?.message || 'Ocorreu um erro ao buscar as disciplinas.');
       }
       console.error(err);
     } finally {
@@ -31,13 +35,26 @@ function SubjectList() {
     fetchSubjects();
   }, []);
 
+  useEffect(() => {
+    if (!searchQuery) {
+      setFilteredSubjects(subjects);
+      return;
+    }
+    const lowerQuery = searchQuery.toLowerCase();
+    const filtered = subjects.filter(subject => 
+      subject.name.toLowerCase().includes(lowerQuery) ||
+      (subject.professor && subject.professor.toLowerCase().includes(lowerQuery))
+    );
+    setFilteredSubjects(filtered);
+  }, [searchQuery, subjects]);
+
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this subject?')) {
+    if (window.confirm('Tem certeza de que deseja excluir esta disciplina?')) {
       try {
         await deleteSubject(id);
         setSubjects(subjects.filter(subject => subject.id !== id));
       } catch (err) {
-        setError('Failed to delete subject.');
+        setError('Falha ao excluir disciplina.');
         console.error(err);
       }
     }

@@ -14,7 +14,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App min-h-screen bg-gray-50 dark:bg-slate-900 text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { createSubject } from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 function SubjectCreate({ onSuccess }) {
-  const [subjectData, setSubjectData] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     professor: '',
     course_load: '',
@@ -12,176 +12,142 @@ function SubjectCreate({ onSuccess }) {
     end_date: '',
   });
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSubjectData(prevData => ({ ...prevData, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     setError(null);
-    setSuccess(null);
-
-    const dataToSend = {
-      ...subjectData,
-      course_load: subjectData.course_load ? parseInt(subjectData.course_load, 10) : null,
-      start_date: subjectData.start_date ? new Date(subjectData.start_date).toISOString() : null,
-      end_date: subjectData.end_date ? new Date(subjectData.end_date).toISOString() : null,
-    };
-
     try {
-      const response = await createSubject(dataToSend);
-      setSuccess(`✅ Successfully created subject: ${response.data.name}`);
-      setTimeout(() => {
-        if (onSuccess) {
-          onSuccess();
-        } else {
-          navigate('/subjects');
-        }
-      }, 1500);
+      await createSubject({
+        ...formData,
+        course_load: parseInt(formData.course_load) || 0
+      });
+      if (onSuccess) {
+        onSuccess();
+        window.location.reload();
+      } else {
+        navigate('/dashboard');
+      }
     } catch (err) {
-      setError(err.response?.data?.message || 'An error occurred while creating the subject.');
+      setError(err.response?.data?.message || 'Falha ao criar disciplina');
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-3xl">
+    <div>
       {error && (
-        <div className="mb-6 bg-red-50 border-2 border-red-200 text-red-700 px-6 py-4 rounded-lg font-medium flex justify-between items-center">
-          <span>❌ {error}</span>
-          <button onClick={() => setError(null)} className="text-red-500 hover:text-red-700 text-xl">✕</button>
+        <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-lg text-sm">
+          ❌ {error}
         </div>
       )}
-      {success && (
-        <div className="mb-6 bg-green-50 border-2 border-green-200 text-green-700 px-6 py-4 rounded-lg font-medium flex justify-between items-center">
-          <span>{success}</span>
-          <button onClick={() => setSuccess(null)} className="text-green-500 hover:text-green-700 text-xl">✕</button>
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit} className="bg-white border-2 border-blue-100 rounded-xl p-8 shadow-md">
-        {/* Subject Name */}
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-3 flex items-center gap-2" htmlFor="name">
-            <span>📚</span>
-            Subject Name *
-          </label>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Nome da Disciplina *</label>
           <input
-            className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            id="name"
             type="text"
             name="name"
-            placeholder="e.g., Advanced Python Programming"
-            value={subjectData.name}
+            value={formData.name}
             onChange={handleChange}
             required
+            placeholder="Ex: Cálculo I"
+            className="w-full px-4 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
           />
         </div>
 
-        {/* Professor & Course Load */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-3 flex items-center gap-2" htmlFor="professor">
-              <span>👨‍🏫</span>
-              Professor
-            </label>
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Professor</label>
             <input
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              id="professor"
               type="text"
               name="professor"
-              placeholder="e.g., Dr. Smith"
-              value={subjectData.professor}
+              value={formData.professor}
               onChange={handleChange}
+              placeholder="Nome do Professor"
+              className="w-full px-4 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
             />
           </div>
-
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-3 flex items-center gap-2" htmlFor="course_load">
-              <span>⏱️</span>
-              Course Load (hours)
-            </label>
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Carga Horária (horas)</label>
             <input
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              id="course_load"
               type="number"
               name="course_load"
-              placeholder="e.g., 40"
-              value={subjectData.course_load}
+              value={formData.course_load}
               onChange={handleChange}
+              placeholder="Ex: 60"
+              className="w-full px-4 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
             />
           </div>
         </div>
 
-        {/* Description */}
-        <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-3 flex items-center gap-2" htmlFor="description">
-            <span>📝</span>
-            Description
-          </label>
-          <textarea
-            className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            id="description"
-            name="description"
-            placeholder="Add a detailed description about this subject..."
-            rows={4}
-            value={subjectData.description}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Start Date & End Date */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-3 flex items-center gap-2" htmlFor="start_date">
-              <span>📅</span>
-              Start Date
-            </label>
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Data de Início *</label>
             <input
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              id="start_date"
               type="date"
               name="start_date"
-              value={subjectData.start_date}
+              value={formData.start_date}
               onChange={handleChange}
+              required
+              className="w-full px-4 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
             />
           </div>
-
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-3 flex items-center gap-2" htmlFor="end_date">
-              <span>🏁</span>
-              End Date
-            </label>
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Data de Término *</label>
             <input
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-              id="end_date"
               type="date"
               name="end_date"
-              value={subjectData.end_date}
+              value={formData.end_date}
               onChange={handleChange}
+              required
+              className="w-full px-4 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
             />
           </div>
         </div>
 
-        {/* Buttons */}
-        <div className="flex items-center justify-between gap-4">
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Descrição</label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            rows="3"
+            placeholder="Detalhes opcionais sobre a disciplina..."
+            className="w-full px-4 py-2 bg-white dark:bg-slate-700 text-gray-900 dark:text-white border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"
+          ></textarea>
+        </div>
+
+        <div className="pt-4 flex justify-end gap-3">
+          {!onSuccess && (
+            <button
+              type="button"
+              onClick={() => navigate('/dashboard')}
+              className="px-4 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors cursor-pointer"
+            >
+              Cancelar
+            </button>
+          )}
           <button
             type="submit"
-            className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-lg"
+            disabled={loading}
+            className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-2 px-6 rounded-lg transition-colors flex items-center gap-2 cursor-pointer shadow-md"
           >
-            <span>✅</span>
-            Create Subject
-          </button>
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 px-8 rounded-lg transition-all duration-200"
-          >
-            Cancel
+            {loading ? (
+              <>
+                <span className="animate-spin">⏳</span>
+                Salvando...
+              </>
+            ) : (
+              'Criar Disciplina'
+            )}
           </button>
         </div>
       </form>

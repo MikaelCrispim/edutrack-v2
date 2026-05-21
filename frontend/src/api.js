@@ -70,6 +70,10 @@ export const getTasksBySubject = (subjectId) => {
   return apiClient.get(`/academic_tasks?subject_id=${subjectId}`);
 };
 
+export const getAllTasks = () => {
+  return apiClient.get('/academic_tasks');
+};
+
 export const createTask = (taskData) => {
   return apiClient.post('/academic_tasks', taskData);
 };
