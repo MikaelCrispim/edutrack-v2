@@ -1,24 +1,24 @@
-## Why
+## Por que
 
-The application dashboard needs clear indicators to help users quickly understand their academic progress. Without an at-a-glance summary, users have to manually count their subjects, pending tasks, and completion rates. Displaying these metrics provides immediate, valuable feedback and improves the overall user experience.
+O painel precisa de indicadores claros para ajudar usuários a entender rapidamente seu progresso acadêmico. Sem um resumo de alto nível, o usuário precisa contar manualmente disciplinas, tarefas pendentes e percentuais de conclusão. Exibir essas métricas fornece feedback imediato e melhora a experiência do usuário.
 
-## What Changes
+## O que será alterado
 
-- A new `DashboardSummary` component is added to the dashboard.
-- The component fetches progress data (total subjects, pending activities, completion percentage) from the backend API `/summary`.
-- The dashboard layout is updated to accommodate this new section at the top of the page.
+- Um novo componente `DashboardSummary` será adicionado ao painel.
+- O componente buscará dados de progresso (total de disciplinas, atividades pendentes, percentual de conclusão) do endpoint `/summary`.
+- O layout do painel será atualizado para acomodar esta seção no topo da página.
 
-## Capabilities
+## Capacidades
 
-### New Capabilities
+### Novas Capacidades
 
-- `dashboard-summary`: Provides a visual summary of the user's progress, including statistics for subjects and tasks.
+- `dashboard-summary`: Fornece um resumo visual do progresso do usuário, incluindo estatísticas de disciplinas e tarefas.
 
-### Modified Capabilities
+### Capacidades Modificadas
 
-- `dashboard`: Enhanced to include the new summary metrics component.
+- `dashboard`: Aprimorado para incluir o novo componente de métricas.
 
-## Impact
+## Impacto
 
-- **Frontend**: A new `DashboardSummary.jsx` component is implemented. The `DashboardPage.jsx` is updated to render this component. An API call function `getDashboardSummary` is added to `api.js`.
-- **Backend**: Assumes the existence of a `/summary` endpoint that calculates and returns these metrics.
+- **Frontend**: Implementação do componente `DashboardSummary.jsx`. `DashboardPage.jsx` será atualizado para renderizá‑lo. Adicionar `getDashboardSummary` em `api.js`.
+- **Backend**: Pressupõe a existência do endpoint `/summary` que calcula e retorna essas métricas.

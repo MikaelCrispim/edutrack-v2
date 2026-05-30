@@ -1,55 +1,55 @@
-## Context
+## Contexto
 
-The current implementation of the subjects module in the frontend is incomplete. It only allows for listing and creating subjects with a minimal set of fields. The UI is basic and does not provide a good user experience. This design document outlines the technical approach to extend the functionality to full CRUD and improve the user interface.
+A implementação atual do módulo de disciplinas no frontend está incompleta. Permite apenas listar e criar disciplinas com um conjunto mínimo de campos. A interface é básica e não oferece uma boa experiência ao usuário. Este documento de design descreve a abordagem técnica para estender a funcionalidade para CRUD completo e melhorar a interface.
 
-## Goals / Non-Goals
+## Objetivos / Não‑Objetivos
 
-**Goals:**
-- To implement full CRUD (Create, Read, Update, Delete) functionality for subjects.
-- To improve the UI/UX of the subjects module by introducing a card-based layout and separating the form from the list.
-- To ensure the frontend correctly communicates with the existing backend API endpoints for all CRUD operations.
+**Objetivos:**
+- Implementar CRUD completo (Criar, Ler, Atualizar, Excluir) para disciplinas.
+- Melhorar a UI/UX do módulo de disciplinas introduzindo um layout baseado em cartões e separando o formulário da lista.
+- Garantir que o frontend comunique corretamente com os endpoints existentes do backend para todas as operações CRUD.
 
-**Non-Goals:**
-- This design does not cover any changes to the backend API. It assumes the necessary endpoints (`GET`, `POST`, `PATCH`/`PUT`, `DELETE` for `/subjects`) are already available and functional.
-- It does not include the implementation of real-time updates (e.g., via WebSockets).
-- It does not cover authentication or authorization aspects, which are handled by `ProtectedRoute.jsx`.
+**Não‑Objetivos:**
+- Este design não altera o API do backend; assume‑se que os endpoints necessários (`GET`, `POST`, `PATCH`/`PUT`, `DELETE` para `/subjects`) já existem.
+- Não inclui implementação de atualizações em tempo real (ex.: WebSockets).
+- Não trata autenticação/autorizações, que são gerenciadas por `ProtectedRoute.jsx`.
 
-## Decisions
+## Decisões
 
-1.  **Component Structure:**
-    *   `SubjectList.jsx`: This component will be responsible for fetching and displaying the list of subjects. It will render individual `SubjectCard` components and will also contain the "Add Subject" button that navigates to the creation page.
-    *   `SubjectCard.jsx`: A new presentational component to display a single subject's details in a card format. It will include "Edit" and "Delete" buttons.
-    *   `SubjectCreate.jsx`: This component will host the form for creating a new subject. It will be a separate page/route.
-    *   `SubjectEdit.jsx`: This new component will host the form for editing an existing subject. It will be pre-filled with the subject's current data.
-    *   `api.js`: This file will be updated to include functions for `updateSubject(id, data)` and `deleteSubject(id)`.
+1. **Estrutura de Componentes:**
+   * `SubjectList.jsx`: Responsável por buscar e exibir a lista de disciplinas. Renderizará `SubjectCard` e conterá o botão "Add Subject" que navega para a página de criação.
+   * `SubjectCard.jsx`: Componente apresentacional para exibir detalhes de uma disciplina em formato de cartão, incluindo botões "Editar" e "Excluir".
+   * `SubjectCreate.jsx`: Componente com o formulário para criar uma nova disciplina (rota/página separada).
+   * `SubjectEdit.jsx`: Novo componente para editar uma disciplina existente, pré‑preenchido com os dados atuais.
+   * `api.js`: Será atualizado com funções `updateSubject(id, data)` e `deleteSubject(id)`.
 
-2.  **Routing:**
-    *   `/subjects`: The main route, handled by `SubjectList.jsx`.
-    *   `/subjects/new`: The route for `SubjectCreate.jsx`.
-    *   `/subjects/:id/edit`: The route for `SubjectEdit.jsx`.
+2. **Rotas:**
+   * `/subjects`: Rota principal, gerenciada por `SubjectList.jsx`.
+   * `/subjects/new`: Rota para `SubjectCreate.jsx`.
+   * `/subjects/:id/edit`: Rota para `SubjectEdit.jsx`.
 
-3.  **Data Flow for Edit:**
-    *   User clicks the "Edit" button on a `SubjectCard`.
-    *   The application navigates to `/subjects/:id/edit`.
-    *   `SubjectEdit.jsx` fetches the subject's data using the `id` from the URL parameters.
-    *   The form is pre-populated with the fetched data.
-    *   User modifies the data and submits the form.
-    *   The `updateSubject` API call is made.
-    *   Upon successful update, the user is navigated back to the `/subjects` list.
+3. **Fluxo de Dados para Edição:**
+   * Usuário clica em "Editar" em um `SubjectCard`.
+   * A aplicação navega para `/subjects/:id/edit`.
+   * `SubjectEdit.jsx` busca os dados da disciplina usando o `id` dos parâmetros da URL.
+   * O formulário é pré‑preenchido com os dados buscados.
+   * Usuário altera os dados e submete o formulário.
+   * É chamada a API `updateSubject`.
+   * Ao atualizar com sucesso, o usuário é redirecionado de volta para a lista `/subjects`.
 
-4.  **Data Flow for Delete:**
-    *   User clicks the "Delete" button on a `SubjectCard`.
-    *   A confirmation dialog will be shown to prevent accidental deletion.
-    *   If confirmed, the `deleteSubject` API call is made.
-    *   Upon successful deletion, the subject is removed from the local state in `SubjectList.jsx`, causing the UI to re-render without the deleted item.
+4. **Fluxo de Dados para Exclusão:**
+   * Usuário clica em "Excluir" em um `SubjectCard`.
+   * Apresentar diálogo de confirmação para evitar exclusões acidentais.
+   * Se confirmado, chamar `deleteSubject`.
+   * Após sucesso, remover o item do estado local em `SubjectList.jsx` para re‑renderizar a UI sem o item.
 
-5.  **Styling:**
-    *   Simple, clean CSS will be used to create the card layout. Flexbox or CSS Grid will be used for responsiveness.
-    *   No new CSS frameworks will be introduced. The styling will be consistent with the existing `App.css` and `index.css`.
+5. **Estilo:**
+   * Usar CSS simples e limpo para criar o layout de cartões (Flexbox ou Grid para responsividade).
+   * Não introduzir novos frameworks CSS; manter consistência com `App.css` e `index.css`.
 
-## Risks / Trade-offs
+## Riscos / Compensações
 
--   **Risk**: The backend API endpoints might have slightly different request/response formats than anticipated.
-    -   **Mitigation**: The frontend code will be written with clear API interaction modules (`api.js`) that can be easily adjusted if the backend contract differs. Thorough testing during implementation will be crucial.
--   **Trade-off**: Creating a separate `SubjectEdit.jsx` component versus using a modal for editing.
-    -   **Rationale**: A separate page (`SubjectEdit.jsx`) provides a more focused user experience for editing, especially on smaller screens, and simplifies the state management of `SubjectList.jsx`. A modal would add complexity to the list component.
+- **Risco:** Os endpoints do backend podem ter formatos de requisição/resposta ligeiramente diferentes do esperado.
+  - **Mitigação:** Isolar interações com a API em `api.js` para facilitar ajustes; realizar testes durante a implementação.
+- **Compensação:** Criar `SubjectEdit.jsx` separado versus usar um modal para edição.
+  - **Justificativa:** Página separada oferece melhor experiência em telas pequenas e simplifica o gerenciamento de estado.

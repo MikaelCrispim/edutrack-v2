@@ -1,44 +1,44 @@
-## Context
+## Contexto
 
-This document outlines the technical design for implementing the EduTrack AI application, as specified in the `proposal.md`. The project will create a hybrid mobile/web application using React/React Native for the frontend and a Xano-based backend. Complex business logic will be handled by custom Node.js services.
+Este documento descreve o design técnico para implementar a aplicação EduTrack AI, conforme definido em `proposal.md`. O projeto prevê uma aplicação híbrida web/móvel usando React/React Native no frontend e Xano como backend. Lógica de negócio mais complexa será implementada em serviços Node.js separados quando necessário.
 
-The entire development process will be guided by the principles of Spec-Driven Development using OpenSpec and will adhere to the agent-based workflow detailed in `docs/xanoscript-dev-guide.md`. This orchestrator agent will delegate all XanoScript implementation to specialized agents.
+Todo o processo de desenvolvimento seguirá os princípios de Spec-Driven Development usando OpenSpec e respeitará o fluxo de trabalho baseado em agentes detalhado em `docs/xanoscript-dev-guide.md`. O agente orquestrador planejará e delegará implementações XanoScript para agentes especializados.
 
-## Goals / Non-Goals
+## Objetivos / Não‑Objetivos
 
-**Goals:**
-- Define the high-level architecture for the EduTrack AI MVP.
-- Clarify the role of each technology component (React, Xano, Node.js).
-- Establish the development process, including the handoff of tasks to specialized agents for Xano development.
-- Provide a clear technical foundation for the implementation tasks.
+**Objetivos:**
+- Definir a arquitetura de alto nível para o MVP EduTrack AI.
+- Esclarecer o papel de cada componente tecnológico (React, Xano, Node.js).
+- Estabelecer o processo de desenvolvimento, incluindo a entrega de tarefas para agentes especializados na parte Xano.
+- Fornecer uma base técnica clara para as tarefas de implementação.
 
-**Non-Goals:**
-- This design does not cover features beyond the defined MVP, such as AI-driven insights or PDF generation.
-- It does not include detailed UI/UX specifications, which will be based on existing Figma templates.
-- It will not specify the exact implementation details of each function or API endpoint, which will be defined in the `tasks.md` and subsequent development.
+**Não‑Objetivos:**
+- Este design não abrange funcionalidades além do MVP definido, como recursos avançados de IA ou geração de PDFs.
+- Não inclui especificações detalhadas de UI/UX, que serão baseadas em templates Figma existentes.
+- Não detalha a implementação exata de cada função ou endpoint; isso será especificado em `tasks.md` e nas etapas subsequentes.
 
-## Decisions
+## Decisões
 
-1.  **Backend Platform:**
-    - **Decision**: Use Xano for the primary backend, including user authentication, database schema, and standard CRUD APIs.
-    - **Rationale**: Xano provides rapid development capabilities for common backend services. The `xanoscript-dev-guide.md` provides a clear framework for building robustly on the platform using an agent-based approach.
+1. **Plataforma de Backend:**
+     - **Decisão:** Usar Xano como backend principal para autenticação, esquema de banco e APIs CRUD.
+     - **Justificativa:** Xano permite desenvolvimento rápido de serviços backend comuns. O `xanoscript-dev-guide.md` fornece um fluxo de trabalho claro para implementar no Xano usando agentes especializados.
 
-2.  **Custom Business Logic:**
-    - **Decision**: Implement complex, non-standard business logic (e.g., weighted progress calculations) in separate Node.js services.
-    - **Rationale**: Node.js offers greater flexibility and a broader ecosystem for computationally intensive or specialized tasks that are not a natural fit for Xano's core functionality.
+2. **Lógica de Negócio Customizada:**
+     - **Decisão:** Implementar lógica complexa (ex.: cálculos de progresso ponderado) em serviços Node.js separados.
+     - **Justificativa:** Node.js oferece flexibilidade e um ecossistema mais amplo para tarefas computacionais que não são ideais para execução direta no Xano.
 
-3.  **Frontend Framework:**
-    - **Decision**: Develop the client application using React/React Native.
-    - **Rationale**: This allows for a single codebase to serve both web and mobile platforms, maximizing efficiency as per the project specification.
+3. **Framework de Frontend:**
+     - **Decisão:** Desenvolver a aplicação cliente com React/React Native.
+     - **Justificativa:** Permite um único codebase servir web e mobile, aumentando a eficiência conforme os requisitos do projeto.
 
-4.  **Development Workflow:**
-    - **Decision**: Strictly follow the specialized agent workflow outlined in `docs/xanoscript-dev-guide.md`.
-    - **Rationale**: This enforces a separation of concerns and leverages expert agents for each part of the Xano backend (database, APIs, functions), ensuring consistency and adherence to best practices. The orchestrator will plan and delegate, not implement.
+4. **Fluxo de Trabalho de Desenvolvimento:**
+     - **Decisão:** Seguir estritamente o fluxo de trabalho baseado em agentes descrito em `docs/xanoscript-dev-guide.md`.
+     - **Justificativa:** Assegura separação de responsabilidades e usa agentes especialistas para cada parte do backend Xano (tabelas, APIs, funções). O orquestrador planeja e delega, sem implementar diretamente.
 
-## Risks / Trade-offs
+## Riscos / Compensações
 
-- **Risk**: The distributed, agent-based workflow can be complex to manage.
-  - **Mitigation**: The implementation plan in `tasks.md` will be highly detailed, with clear instructions and expected outcomes for each delegated task. Each step will be verified upon completion.
+- **Risco:** O fluxo distribuído baseado em agentes pode ser complexo de coordenar.
+    - **Mitigação:** `tasks.md` conterá um plano detalhado com instruções claras e resultados esperados para cada tarefa delegada; cada etapa será verificada.
 
-- **Risk**: Potential for inconsistencies between the frontend and the Xano backend API contract.
-  - **Mitigation**: The frontend development process will begin only after the backend APIs are defined and their specifications are retrieved. The `Xano Frontend Developer` agent's critical rule to use `get_xano_api_specifications` will be enforced.
+- **Risco:** Inconsistências potenciais entre frontend e contrato de API do backend Xano.
+    - **Mitigação:** O desenvolvimento do frontend começará apenas após as APIs do backend serem definidas e suas especificações serem obtidas. A regra do `Xano Frontend Developer` de sempre usar `get_xano_api_specifications` será aplicada.

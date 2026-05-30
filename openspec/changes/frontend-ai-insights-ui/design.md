@@ -1,47 +1,47 @@
-## Context
+## Contexto
 
-This document outlines the design for the frontend interface of the AI Insights feature. The goal is to provide a clean, engaging UI where users can read past insights and trigger the generation of new ones directly from the dashboard.
+Este documento descreve o design da interface frontend para a funcionalidade AI Insights. O objetivo é fornecer uma UI limpa e envolvente onde os usuários possam ler insights anteriores e acionar a geração de novos insights diretamente pelo painel.
 
-## Goals / Non-Goals
+## Objetivos / Não‑objetivos
 
-**Goals:**
-- Design a React component that fetches and displays a list of insights.
-- Implement an interactive "Generate Insights" button.
-- Provide clear visual feedback for loading, generating, and error states.
-- Display a fallback "empty state" when no insights exist.
+**Objetivos:**
+- Projetar um componente React que busque e exiba uma lista de insights.
+- Implementar um botão interativo "Gerar Insights".
+- Fornecer feedback visual claro para estados de carregamento, geração e erro.
+- Exibir um estado vazio (empty state) quando não houver insights.
 
-**Non-Goals:**
-- Modifying the AI generation prompt or the backend rate-limiting logic.
+**Não‑objetivos:**
+- Modificar o prompt de geração de IA ou a lógica de rate limiting no backend.
 
-## Decisions
+## Decisões
 
-### 1. Component Structure
+### 1. Estrutura do Componente
 
-We will create `AIInsights.jsx` in the `src/components/dashboard` directory.
+Criaremos `AIInsights.jsx` em `src/components/dashboard`.
 
-- **State Management:**
-  - `insights` (Array): Stores the list of insights.
-  - `loading` (Boolean): Controls the initial fetch spinner.
-  - `generating` (Boolean): Controls the spinner and disabled state of the "Generate Insights" button during generation.
-  - `error` (String | null): Stores error messages for display.
-- **Data Fetching:** On mount, `useEffect` calls `fetchInsights()` (which uses `getAIInsights`).
+- **Gerenciamento de Estado:**
+  - `insights` (Array): Lista de insights.
+  - `loading` (Boolean): Controla o spinner do fetch inicial.
+  - `generating` (Boolean): Controla o spinner e desabilita o botão durante a geração.
+  - `error` (String | null): Mensagens de erro a exibir.
+- **Busca de Dados:** No mount, `useEffect` chama `fetchInsights()` (que usa `getAIInsights`).
 
-### 2. UI Design
+### 2. Design da UI
 
-- **Main Layout:** A styled container with a header ("AI Insights" + Robot icon) and a "Generate Insights" button on the top right.
-- **Empty State:** If `insights.length === 0`, display a welcoming empty state with an invitation to complete tasks and a prominent "Generate First Insight" button.
-- **Insights List:** Insights are displayed as a vertical list of visually distinct cards. Each card shows the insight text and the timestamp of creation. Emojis (⭐ for the latest, 💡 for older ones) are used to add visual interest.
-- **Feedback Mechanisms:**
-  - A large spinning robot emoji (`🤖`) during initial load.
-  - A spinning hourglass (`⏳`) and updated text on the button during generation.
-  - A dismissible red alert box for errors.
+- **Layout Principal:** Container estilizado com cabeçalho ("AI Insights" + ícone de robô) e botão "Gerar Insights" no canto superior direito.
+- **Estado Vazio:** Se `insights.length === 0`, exibir uma tela de boas‑vindas convidando o usuário a completar tarefas e um botão proeminente "Gerar Primeiro Insight".
+- **Lista de Insights:** Insights exibidos como uma lista vertical de cartões visuais. Cada cartão mostra o texto do insight e a data de criação. Emojis (⭐ para o mais recente, 💡 para os anteriores) adicionam interesse visual.
+- **Mecanismos de Feedback:**
+  - Emoji de robô girando (`🤖`) durante o carregamento inicial.
+  - Ampulheta girando (`⏳`) e texto atualizado no botão durante a geração.
+  - Caixa de alerta vermelha descartável para erros.
 
-### 3. API Integration
+### 3. Integração com API
 
-- **Fetching:** Adds `getAIInsights` to `src/api.js` to call `GET /ai_insights`.
-- **Generating:** Uses the existing `generateAIInsights` function to call `POST /generate_insights`. When generation succeeds, `fetchInsights()` is immediately called again to refresh the list.
+- **Busca:** Adicionar `getAIInsights` em `src/api.js` para chamar `GET /ai_insights`.
+- **Geração:** Usar `generateAIInsights` para chamar `POST /generate_insights`. Quando a geração for bem‑sucedida, chamar `fetchInsights()` novamente para atualizar a lista.
 
-## Risks / Trade-offs
+## Riscos / Compensações
 
-- **[Risk] Long Generation Time:** AI generation can take a few seconds. If the user navigates away, the UI won't update.
-  - **Mitigation:** The `generating` state provides immediate feedback, and the button is disabled to prevent multiple rapid clicks. The backend's 24-hour rate limit (designed previously) prevents abuse.
+- **[Risco] Tempo longo de geração:** A geração por IA pode levar alguns segundos; se o usuário navegar, a UI não atualizará imediatamente.
+  - **Mitigação:** O estado `generating` fornece feedback imediato e o botão é desabilitado para prevenir cliques repetidos. O limite de 24 horas no backend ajuda a evitar abuso.

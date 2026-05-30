@@ -1,82 +1,82 @@
-## Context
+## Contexto
 
-The current dashboard is minimalist and does not provide users with aggregated data on their academic progress. The proposal outlines the need for a more informative dashboard with progress indicators and AI-driven insights. This design document details the technical approach to implement these new features.
+O painel atual é minimalista e não fornece dados agregados sobre o progresso acadêmico dos usuários. A proposta descreve a necessidade de um painel mais informativo com indicadores de progresso e insights gerados por IA. Este documento detalha a abordagem técnica para implementar essas funcionalidades.
 
-## Goals / Non-Goals
+## Objetivos / Não‑objetivos
 
-**Goals:**
+**Objetivos:**
 
--   Design the frontend components for the `DashboardSummary` and `AIInsights`.
--   Define the API endpoints required to support the new frontend components.
--   Outline the backend logic for calculating progress metrics and generating AI insights.
--   Propose a database schema for storing AI-generated insights.
+- Projetar os componentes frontend `DashboardSummary` e `AIInsights`.
+- Definir os endpoints de API necessários para suportar os novos componentes.
+- Descrever a lógica de backend para calcular métricas de progresso e gerar insights por IA.
+- Propor um esquema de banco de dados para armazenar insights gerados.
 
-**Non-Goals:**
+**Não‑objetivos:**
 
--   This design does not cover the specific implementation details of the AI model for generating insights. It will focus on the integration with a hypothetical AI service.
--   The UI/UX design will be functional, with a focus on clear data presentation. A full-fledged visual design is out of scope.
+- Este design não cobre detalhes específicos de implementação do modelo de IA; foca na integração com um serviço de IA hipotético.
+- O design de UI/UX será funcional, com foco na apresentação clara dos dados; um design visual completo está fora do escopo.
 
-## Decisions
+## Decisões
 
-### 1. Frontend Components
+### 1. Componentes Frontend
 
--   **`DashboardSummary.jsx`**: A new component will be created to display the progress indicators. It will fetch data from the `/api/dashboard/summary` endpoint. The component will be a simple display of stats like "Total Subjects", "Pending Activities", and "Completion Rate".
--   **`AIInsights.jsx`**: A new component to display insights from the `/api/ai/insights` endpoint. It will render the AI-generated text in a clear and readable format.
--   **`DashboardPage.jsx`**: The main dashboard page will be updated to include the `DashboardSummary` and `AIInsights` components. They will be arranged to provide a comprehensive overview at the top of the page.
+- **`DashboardSummary.jsx`**: Novo componente para exibir indicadores de progresso. Buscará dados em `/api/dashboard/summary`. Exibirá estatísticas como "Total de Disciplinas", "Atividades Pendentes" e "Percentual de Conclusão".
+- **`AIInsights.jsx`**: Componente para exibir insights retornados por `/api/ai/insights`, renderizando o texto gerado de forma clara e legível.
+- **`DashboardPage.jsx`**: A página principal do painel será atualizada para incluir `DashboardSummary` e `AIInsights`, dispostos para fornecer uma visão geral no topo da página.
 
-### 2. Backend API Endpoints
+### 2. Endpoints de API no Backend
 
--   **`GET /api/dashboard/summary`**: This endpoint will return a JSON object with the user's progress metrics.
-    -   **Request**: None
-    -   **Response**:
-        ```json
+- **`GET /api/dashboard/summary`**: Retorna um objeto JSON com as métricas de progresso do usuário.
+  - **Request**: Nenhuma
+  - **Response**:
+    ```json
+    {
+      "totalSubjects": 5,
+      "pendingActivities": 10,
+      "completionPercentage": 45.5
+    }
+    ```
+- **`GET /api/ai/insights`**: Retorna os insights gerados por IA para o usuário.
+  - **Request**: Nenhuma
+  - **Response**:
+    ```json
+    {
+      "insights": [
         {
-          "totalSubjects": 5,
-          "pendingActivities": 10,
-          "completionPercentage": 45.5
-        }
-        ```
--   **`GET /api/ai/insights`**: This endpoint will return AI-generated insights for the user.
-    -   **Request**: None
-    -   **Response**:
-        ```json
+          "id": "insight-1",
+          "text": "Você está indo muito bem em 'Introdução à Programação'! Considere explorar tópicos avançados.",
+          "createdAt": "2026-04-04T10:00:00Z"
+        },
         {
-          "insights": [
-            {
-              "id": "insight-1",
-              "text": "You are doing great in 'Introduction to Programming'! Consider exploring advanced topics.",
-              "createdAt": "2026-04-04T10:00:00Z"
-            },
-            {
-              "id": "insight-2",
-              "text": "You have a few pending tasks in 'Data Structures'. Try to complete them this week to stay on track.",
-              "createdAt": "2026-04-03T15:30:00Z"
-            }
-          ]
+          "id": "insight-2",
+          "text": "Você tem algumas tarefas pendentes em 'Estruturas de Dados'. Procure finalizá‑las esta semana para manter o ritmo.",
+          "createdAt": "2026-04-03T15:30:00Z"
         }
-        ```
+      ]
+    }
+    ```
 
-### 3. Backend Logic
+### 3. Lógica de Backend
 
--   **Progress Calculation**: The backend will need to query the `subjects` and `academic_tasks` tables to calculate the total number of subjects, pending tasks, and the overall completion percentage. This logic will be encapsulated in a service that the `/api/dashboard/summary` endpoint will use.
--   **AI Insight Generation**: The `/api/ai/insights` endpoint will be responsible for generating and retrieving insights.
-    -   **Generation**: A scheduled task or a trigger on task completion could initiate the AI insight generation process. This process would involve sending the user's progress data to an AI service (e.g., a custom model or a third-party API) and storing the result in the `ai_insights` table.
-    -   **Retrieval**: The endpoint will fetch the latest insights for the user from the `ai_insights` table.
+- **Cálculo de Progresso:** O backend deve consultar `subjects` e `academic_tasks` para calcular o total de disciplinas, tarefas pendentes e a porcentagem de conclusão. Essa lógica será encapsulada em um serviço usado por `/api/dashboard/summary`.
+- **Geração de Insights por IA:** O endpoint `/api/ai/insights` ficará responsável por gerar e recuperar insights.
+  - **Geração:** Uma tarefa agendada ou um gatilho ao completar uma tarefa pode iniciar o processo de geração de insights, enviando os dados do usuário a um serviço de IA e armazenando o resultado em `ai_insights`.
+  - **Recuperação:** O endpoint buscará os insights mais recentes na tabela `ai_insights`.
 
-### 4. Database Schema
+### 4. Esquema de Banco de Dados
 
--   A new table `ai_insights` will be created to store the generated insights.
+- Criar a tabela `ai_insights` para armazenar os insights gerados.
 
-    | Column      | Type      | Description                               |
-    |-------------|-----------|-------------------------------------------|
-    | `id`        | `uuid`    | Primary key                               |
-    | `user_id`   | `uuid`    | Foreign key to the `users` table          |
-    | `text`      | `text`    | The AI-generated insight text             |
-    | `created_at`| `timestamp`| When the insight was generated            |
+    | Column      | Type       | Description                               |
+    |-------------|------------|-------------------------------------------|
+    | `id`        | `uuid`     | Chave primária                             |
+    | `user_id`   | `uuid`     | FK para a tabela `users`                   |
+    | `text`      | `text`     | Texto do insight gerado pela IA            |
+    | `created_at`| `timestamp`| Quando o insight foi gerado                |
 
-## Risks / Trade-offs
+## Riscos / Compensações
 
--   **AI Service Dependency**: The AI insights feature is dependent on an external or internal AI service. If the service is unavailable or slow, it will impact the user experience.
-    -   **Mitigation**: Implement caching for the AI insights to reduce the number of calls to the AI service and to have stale data available if the service is down. Implement proper error handling and display a graceful message to the user if insights cannot be fetched.
--   **Performance**: The calculation of progress metrics could be slow if there is a large amount of data.
-    -   **Mitigation**: The progress summary can be pre-calculated and cached. The calculation can be updated via triggers when underlying data changes, or run as a periodic background job.
+- **Dependência do serviço de IA:** A funcionalidade depende de um serviço de IA. Se estiver indisponível ou lento, a experiência será afetada.
+  - **Mitigação:** Implementar cache para reduzir chamadas ao serviço de IA e manter dados em cache quando o serviço estiver fora do ar. Implementar tratamento de erro e exibir mensagem amigável ao usuário caso não seja possível obter insights.
+- **Performance:** O cálculo de métricas pode ser oneroso com grande volume de dados.
+  - **Mitigação:** Pré‑calcular e cachear o resumo de progresso. Atualizar cálculos via gatilhos ao alterar dados ou executar como job periódico.

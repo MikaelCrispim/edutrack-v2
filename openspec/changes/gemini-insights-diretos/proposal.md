@@ -108,6 +108,6 @@ Após geração, o frontend fará `POST /ai_insights` por insight via `api.js` p
 
 ## 8. Referências
 
-- [Gemini API Docs - Google AI Studio](https://ai.google.dev/docs)
-- [Google Generative AI JS SDK](https://www.npmjs.com/package/@google/generative-ai)
-- [Vite Env Variables](https://vitejs.dev/guide/env-and-mode)
+- https://ai.google.dev/docs
+- https://www.npmjs.com/package/@google/generative-ai
+- https://vitejs.dev/guide/env-and-mode

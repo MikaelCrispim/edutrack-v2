@@ -1,23 +1,23 @@
-## Why
+## Por que
 
-The application is failing to start due to a PostCSS configuration error with Tailwind CSS. The error message indicates that the Tailwind CSS PostCSS plugin has been moved to a separate package, `@tailwindcss/postcss`. This change is necessary to fix the build error and allow the application to run.
+A aplicação falha ao iniciar devido a um erro de configuração do PostCSS com o Tailwind CSS. A mensagem de erro indica que o plugin PostCSS do Tailwind foi movido para um pacote separado, `@tailwindcss/postcss`. Essa alteração é necessária para corrigir o erro de build e permitir que a aplicação rode.
 
-## What Changes
+## O que será alterado
 
-- Install the new `@tailwindcss/postcss` package.
-- Update the `postcss.config.js` file to correctly reference the new plugin.
-- Uninstall the old `tailwindcss` package and install the new one to ensure version compatibility.
+- Instalar o novo pacote `@tailwindcss/postcss`.
+- Atualizar o arquivo `postcss.config.js` para referenciar corretamente o novo plugin.
+- Atualizar as dependências garantindo a versão compatível do `tailwindcss`.
 
-## Capabilities
+## Capacidades
 
-### New Capabilities
-- None
+### Novas Capacidades
+- Nenhuma
 
-### Modified Capabilities
-- `tailwind-config`: The Tailwind CSS and PostCSS configuration will be updated to use the correct packages and fix the build error.
+### Capacidades Modificadas
+- `tailwind-config`: A configuração do Tailwind CSS e do PostCSS será atualizada para usar os pacotes corretos e corrigir o erro de build.
 
-## Impact
+## Impacto
 
-- **Project Configuration:**
-  - `package.json`: Will be updated to remove `tailwindcss` and add `@tailwindcss/postcss` and the correct `tailwindcss` version.
-  - `postcss.config.js`: Will be updated to use the new plugin.
+- **Configuração do Projeto:**
+  - `package.json`: Será atualizado para garantir as dependências corretas (`@tailwindcss/postcss` e `tailwindcss` na versão compatível).
+  - `postcss.config.js`: Será atualizado para utilizar o novo plugin.

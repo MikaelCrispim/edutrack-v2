@@ -1,27 +1,27 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Persistent Navigation Bar
-The system SHALL display a persistent navigation bar at the top of the screen for all authenticated user routes.
+### Requisito: Barra de Navegação Persistente
+O sistema DEVE exibir uma barra de navegação persistente no topo da tela em todas as rotas protegidas por autenticação.
 
-#### Scenario: Viewing the Navbar
-- **WHEN** an authenticated user navigates to any protected page (e.g., `/subjects`).
-- **THEN** the system SHALL display a navigation bar.
-- **AND** the navigation bar SHALL contain a visible link to the "Subjects" or "Dashboard" page.
-- **AND** the navigation bar SHALL contain a "Logout" button.
+#### Cenário: Visualizando a Navbar
+- **QUANDO** um usuário autenticado navegar para qualquer página protegida (por exemplo, `/subjects`).
+- **ENTÃO** o sistema DEVE mostrar a barra de navegação.
+- **E** a barra DEVE conter um link visível para a página "Disciplinas" ou "Painel".
+- **E** a barra DEVE conter um botão "Logout".
 
-### Requirement: User Logout
-The system SHALL allow an authenticated user to log out.
+### Requisito: Logout de Usuário
+O sistema DEVE permitir que um usuário autenticado faça logout.
 
-#### Scenario: Successful Logout
-- **WHEN** a user clicks the "Logout" button in the navigation bar.
-- **THEN** the authentication token SHALL be removed from `localStorage`.
-- **AND** the user SHALL be redirected to the `/login` page.
+#### Cenário: Logout bem‑sucedido
+- **QUANDO** o usuário clicar no botão "Logout" na barra de navegação.
+- **ENTÃO** o token de autenticação DEVE ser removido de `localStorage`.
+- **E** o usuário DEVE ser redirecionado para a página `/login`.
 
-### Requirement: Form Cancellation
-The system SHALL provide a way for users to cancel out of a form and return to the previous page.
+### Requisito: Cancelamento de Formulário
+O sistema DEVE fornecer uma maneira de o usuário cancelar um formulário e retornar à página anterior.
 
-#### Scenario: Cancel Subject Creation
-- **WHEN** a user is on the "Create Subject" form.
-- **THEN** a "Cancel" or "Back" button SHALL be visible.
-- **WHEN** the user clicks the "Cancel" or "Back" button.
-- **THEN** the user SHALL be navigated back to the subject list page.
+#### Cenário: Cancelar Criação de Disciplina
+- **QUANDO** o usuário estiver no formulário "Criar Disciplina".
+- **ENTÃO** um botão "Cancelar" ou "Voltar" DEVE estar visível.
+- **QUANDO** o usuário clicar em "Cancelar" ou "Voltar".
+- **ENTÃO** o usuário DEVE ser navegaddo de volta à lista de disciplinas.

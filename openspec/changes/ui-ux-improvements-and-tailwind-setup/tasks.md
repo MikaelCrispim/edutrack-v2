@@ -1,26 +1,26 @@
-## 1. Tailwind CSS Setup
+## 1. Configuração do Tailwind CSS
 
-- [x] 1.1 In the `frontend` directory, install `tailwindcss`, `postcss`, and `autoprefixer` as dev dependencies.
-- [x] 1.2 Create a `tailwind.config.js` file in the `frontend` directory with the correct content paths for the Vite project.
-- [x] 1.3 Create a `postcss.config.js` file in the `frontend` directory to include the Tailwind and Autoprefixer plugins.
-- [x] 1.4 Clear the contents of `frontend/src/index.css` and replace them with the `@tailwind` directives.
-- [x] 1.5 Remove the subject-related CSS from `frontend/src/App.css`.
+- [x] 1.1 No diretório `frontend`, instalar `tailwindcss`, `postcss` e `autoprefixer` como dependências de desenvolvimento.
+- [x] 1.2 Criar um arquivo `tailwind.config.js` no diretório `frontend` com os paths de conteúdo corretos para um projeto Vite.
+- [x] 1.3 Criar um arquivo `postcss.config.js` no diretório `frontend` incluindo os plugins Tailwind e Autoprefixer.
+- [x] 1.4 Limpar o conteúdo de `frontend/src/index.css` e substituí‑lo pelas diretivas `@tailwind`.
+- [x] 1.5 Remover o CSS relacionado a disciplinas de `frontend/src/App.css`.
 
-## 2. Global Navigation and Layout
+## 2. Navegação Global e Layout
 
-- [x] 2.1 Create a new component `frontend/src/components/Navbar.jsx`.
-- [x] 2.2 Implement the `Navbar` component with a link to `/subjects` and a "Logout" button. The logout button must clear `localStorage` and redirect to `/login`.
-- [x] 2.3 Create a new layout component `frontend/src/components/MainLayout.jsx` that renders the `Navbar` and an `<Outlet />`.
-- [x] 2.4 Modify `frontend/src/App.jsx` to use the `MainLayout` for all protected routes. The root path should redirect to `/subjects`.
+- [x] 2.1 Criar um novo componente `frontend/src/components/Navbar.jsx`.
+- [x] 2.2 Implementar o componente `Navbar` com um link para `/subjects` e um botão "Logout" que limpe o `localStorage` e redirecione para `/login`.
+- [x] 2.3 Criar um novo componente de layout `frontend/src/components/MainLayout.jsx` que renderize o `Navbar` e um `<Outlet />`.
+- [x] 2.4 Atualizar `frontend/src/App.jsx` para usar `MainLayout` em todas as rotas protegidas. A rota raiz deve redirecionar para `/subjects`.
 
-## 3. Component Refactoring with Tailwind CSS
+## 3. Refatoração de Componentes com Tailwind CSS
 
-- [x] 3.1 Refactor `frontend/src/components/subjects/SubjectCard.jsx` to use only Tailwind CSS utility classes for a modern card design (shadows, rounded corners, padding).
-- [x] 3.2 Refactor `frontend/src/components/subjects/SubjectList.jsx` to use Tailwind CSS for a responsive grid layout.
-- [x] 3.3 Refactor `frontend/src/components/subjects/SubjectCreate.jsx` to style the form and its elements using Tailwind CSS. Add a "Cancel" button that navigates back to the previous page.
-- [x] 3.4 Refactor `frontend/src/components/subjects/SubjectEdit.jsx` to style the form and its elements using Tailwind CSS. Add a "Cancel" button that navigates back to the previous page.
+- [x] 3.1 Refatorar `frontend/src/components/subjects/SubjectCard.jsx` para utilizar apenas classes utilitárias do Tailwind (sombra, cantos arredondados, padding) e adotar um design de card moderno.
+- [x] 3.2 Refatorar `frontend/src/components/subjects/SubjectList.jsx` para usar Tailwind numa grade responsiva.
+- [x] 3.3 Refatorar `frontend/src/components/subjects/SubjectCreate.jsx` para estilizar o formulário e seus elementos com Tailwind. Adicionar um botão "Cancelar" que navegue para a página anterior.
+- [x] 3.4 Refatorar `frontend/src/components/subjects/SubjectEdit.jsx` para estilizar o formulário e seus elementos com Tailwind. Adicionar um botão "Cancelar" que navegue para a página anterior.
 
-## 4. Final Cleanup
+## 4. Limpeza Final
 
-- [x] 4.1 Review all modified components to ensure no plain `className` attributes are used for styling and that all styling is done via Tailwind CSS.
-- [x] 4.2 Verify that the application is fully responsive.
+- [x] 4.1 Rever todos os componentes modificados para garantir que não restaram atributos `className` com CSS inline e que a estilização seja feita com Tailwind.
+- [x] 4.2 Verificar que a aplicação é totalmente responsiva.

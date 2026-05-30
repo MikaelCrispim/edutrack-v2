@@ -1,27 +1,27 @@
-## Context
+## Contexto
 
-The application build is failing due to an incorrect PostCSS configuration for Tailwind CSS. The current setup is referencing a deprecated package.
+A build da aplicação estava falhando devido a uma configuração incorreta do PostCSS para o Tailwind CSS. A configuração atual faz referência a um pacote obsoleto.
 
-## Goals / Non-Goals
+## Objetivos / Não‑objetivos
 
-**Goals:**
-- To fix the build error by updating the PostCSS configuration and dependencies.
-- To ensure the Tailwind CSS compilation process works correctly.
+**Objetivos:**
+- Corrigir o erro de build atual atualizando a configuração do PostCSS e as dependências.
+- Garantir que o processo de compilação do Tailwind CSS funcione corretamente.
 
-**Non-Goals:**
-- This design does not cover any changes to the application's UI or functionality.
+**Não‑objetivos:**
+- Este design não abrange alterações na UI ou na funcionalidade da aplicação.
 
-## Decisions
+## Decisões
 
-1.  **Dependency Management:**
-    *   **Decision**: We will uninstall the existing `tailwindcss` package and install the new `@tailwindcss/postcss` package, along with the latest compatible version of `tailwindcss`.
-    *   **Rationale**: The error message explicitly states that the PostCSS plugin has been moved to a separate package. This ensures we are using the correct and officially supported packages.
+1. **Gerenciamento de Dependências:**
+   - **Decisão:** Desinstalar o pacote `tailwindcss` antigo e instalar o pacote `@tailwindcss/postcss`, juntamente com a versão compatível mais recente do `tailwindcss`.
+   - **Justificativa:** A mensagem de erro indica que o plugin PostCSS foi movido para um pacote separado. Essa mudança garante o uso dos pacotes corretos e suportados oficialmente.
 
-2.  **Configuration Update:**
-    *   **Decision**: The `postcss.config.js` file will be updated. The `plugins` object will be modified to use `'tailwindcss'` as a key, which the PostCSS runner will automatically resolve to the correct package.
-    *   **Rationale**: This is the standard way to configure PostCSS plugins and will resolve the build error.
+2. **Atualização de Configuração:**
+   - **Decisão:** Atualizar o arquivo `postcss.config.js`. O objeto `plugins` será alterado para usar `'tailwindcss'` como chave, que o runner do PostCSS resolverá automaticamente para o pacote correto.
+   - **Justificativa:** Esta é a forma padrão de configurar plugins do PostCSS e resolverá o erro de build.
 
-## Risks / Trade-offs
+## Riscos / Compensações
 
--   **Risk**: There are no significant risks associated with this change, as it is a standard dependency and configuration update to fix a known issue.
--   **Trade-off**: None. This change is required for the application to build.
+- **Risco:** Não existem riscos significativos associados a esta alteração, pois trata‑se de uma atualização padrão de dependência e configuração para corrigir um problema conhecido.
+- **Compensação:** Nenhuma. A alteração é necessária para que a aplicação seja buildada.

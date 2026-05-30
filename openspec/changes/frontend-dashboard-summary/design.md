@@ -1,40 +1,40 @@
-## Context
+## Contexto
 
-The user dashboard requires a summary section that highlights key metrics: Total Subjects, Pending Activities, and Completion Rate. This design outlines how the frontend component is structured to fetch and display this data dynamically.
+O painel do usuário precisa de uma seção resumo que destaque métricas chave: Total de Disciplinas, Atividades Pendentes e Percentual de Conclusão. Este design descreve como o componente frontend será estruturado para buscar e exibir esses dados dinamicamente.
 
-## Goals / Non-Goals
+## Objetivos / Não‑objetivos
 
-**Goals:**
-- Design a React component that fetches data from the backend `/summary` endpoint.
-- Provide a visually appealing layout with gradient cards and icons for each metric.
-- Include a progress bar for the completion rate.
-- Handle loading and error states gracefully.
+**Objetivos:**
+- Projetar um componente React que busque dados do endpoint `/summary` no backend.
+- Fornecer um layout visualmente atraente com cartões e ícones para cada métrica.
+- Incluir uma barra de progresso para a taxa de conclusão.
+- Tratar estados de carregamento e erro de forma elegante.
 
-**Non-Goals:**
-- Modifying or implementing the backend logic for calculating the summary (this is assumed to be handled by an existing endpoint).
+**Não‑objetivos:**
+- Modificar ou implementar a lógica de backend para calcular o resumo (assume‑se que o endpoint já existe).
 
-## Decisions
+## Decisões
 
-### 1. Component Structure
+### 1. Estrutura do Componente
 
-We will create a new component `DashboardSummary.jsx` in the `src/components/dashboard` directory.
+Criaremos `DashboardSummary.jsx` em `src/components/dashboard`.
 
-- **State Management:** The component will use React `useState` to manage `summaryData`, `loading`, and `error` states.
-- **Data Fetching:** It will use `useEffect` to call the `getDashboardSummary` API function on mount.
+- **Gerenciamento de Estado:** Usar `useState` para `summaryData`, `loading` e `error`.
+- **Busca de Dados:** Usar `useEffect` para chamar `getDashboardSummary` na montagem do componente.
 
-### 2. UI Design
+### 2. Design da UI
 
-- **Layout:** The summary will use a CSS Grid layout (`grid-cols-1 md:grid-cols-3`) to display the three metrics responsively.
-- **Visuals:** Each metric will be displayed inside a card with a subtle gradient background, an icon, and a large, bold value text. The Completion Rate card will additionally feature a horizontal progress bar.
-- **Feedback:** 
-  - A loading spinner will be shown while fetching data.
-  - An error message block will be shown if the API call fails.
+- **Layout:** Usar grid CSS (`grid-cols-1 md:grid-cols-3`) para exibir as três métricas de forma responsiva.
+- **Visuais:** Cada métrica será exibida em um cartão com um leve gradiente, um ícone e um valor em destaque. O cartão de Percentual de Conclusão terá uma barra de progresso horizontal.
+- **Feedback:**
+  - Exibir spinner durante a busca de dados.
+  - Exibir um bloco de erro se a chamada à API falhar.
 
-### 3. API Integration
+### 3. Integração com API
 
-- **Decision:** Add a function `getDashboardSummary` to `src/api.js` to handle the `GET /summary` request using the existing Axios client.
+- **Decisão:** Adicionar a função `getDashboardSummary` em `src/api.js` para tratar `GET /summary` usando o cliente Axios existente.
 
-## Risks / Trade-offs
+## Riscos / Compensações
 
-- **[Risk] API Dependency:** The component relies on the `/summary` endpoint. If the endpoint is slow or down, the dashboard experience degrades.
-  - **Mitigation:** Proper loading states and error handling ensure the UI doesn't break, informing the user of the issue.
+- **[Risco] Dependência da API:** O componente depende do endpoint `/summary`. Se lento ou indisponível, a experiência do painel degrada.
+  - **Mitigação:** Exibir estados de carregamento e mensagens de erro apropriadas para informar o usuário.

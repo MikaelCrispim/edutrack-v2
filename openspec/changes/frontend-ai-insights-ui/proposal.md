@@ -1,25 +1,25 @@
-## Why
+## Por que
 
-While the backend logic for generating AI insights exists, the frontend requires an interface to display these insights to the user. Additionally, giving the user the ability to manually request new insights enhances interactivity and ensures they can get immediate feedback when needed.
+Embora a lógica de backend para gerar AI insights exista, o frontend precisa de uma interface para exibir esses insights ao usuário. Além disso, permitir que o usuário solicite manualmente novos insights aumenta a interatividade e garante feedback imediato quando necessário.
 
-## What Changes
+## O que será alterado
 
-- A new `AIInsights` component is added to the dashboard.
-- The component fetches previously generated insights via the `/ai_insights` endpoint and displays them.
-- A "Generate Insights" button is provided to call the `/generate_insights` endpoint manually, triggering the backend process and refreshing the displayed insights.
-- The dashboard layout is updated to feature this component.
+- Um novo componente `AIInsights` será adicionado ao painel.
+- O componente buscará insights gerados anteriormente via endpoint `/ai_insights` e exibirá os resultados.
+- Um botão "Gerar Insights" será disponibilizado para chamar manualmente o endpoint `/generate_insights`, acionando o processo no backend e atualizando os insights exibidos.
+- O layout do painel será atualizado para incluir este componente.
 
-## Capabilities
+## Capacidades
 
-### New Capabilities
+### Novas Capacidades
 
-- `ai-insights-ui`: Provides a user interface for viewing personalized AI recommendations and an interactive element to trigger the generation process.
+- `ai-insights-ui`: Interface para visualização de recomendações personalizadas por IA e elemento interativo para disparar a geração.
 
-### Modified Capabilities
+### Capacidades Modificadas
 
-- `dashboard`: Enhanced to include the AI Insights component.
+- `dashboard`: Aprimorado para incluir o componente AI Insights.
 
-## Impact
+## Impacto
 
-- **Frontend**: A new `AIInsights.jsx` component is implemented. The `DashboardPage.jsx` is updated to include it. An API call function `getAIInsights` is added to `api.js` (the `generateAIInsights` function was previously defined in the backend implementation tasks).
-- **Backend**: Relies on the endpoints defined in the `ai-insight-generation-mechanism` change.
+- **Frontend**: Implementação do componente `AIInsights.jsx`. `DashboardPage.jsx` será atualizado para incluí‑lo. Adicionar `getAIInsights` em `api.js` (a função `generateAIInsights` foi definida nas tarefas de backend).
+- **Backend**: Depende dos endpoints definidos em `ai-insight-generation-mechanism`.

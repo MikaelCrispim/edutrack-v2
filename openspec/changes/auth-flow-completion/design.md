@@ -1,35 +1,35 @@
-## Context
+## Contexto
 
-This design outlines the technical approach to finalize the Registration and Password Reset flows by introducing an OTP (One Time Password) / verification code mechanism.
+Este design descreve a abordagem técnica para finalizar os fluxos de Registro e Redefinição de Senha, introduzindo um mecanismo de OTP (código de verificação) de uso único.
 
-## Goals / Non-Goals
+## Objetivos / Não‑objetivos
 
-**Goals:**
-- Add an intermediate UI step in Registration for users to input a code.
-- Add an intermediate UI step in Password Reset for users to input a code and new password.
-- Define the exact Xano backend requirements so the user can configure them manually.
+**Objetivos:**
+- Adicionar uma etapa intermediária na UI de Registro para que o usuário insira um código.
+- Adicionar uma etapa intermediária na UI de Redefinição de Senha para que o usuário insira um código e a nova senha.
+- Definir os requisitos exatos no backend (Xano) para que possam ser configurados manualmente.
 
-**Non-Goals:**
-- Implementing complex multi-factor authentication (MFA) apps.
+**Não‑objetivos:**
+- Implementar soluções complexas de autenticação multifator (MFA).
 
-## Decisions
+## Decisões
 
-### 1. Registration Flow
-- **Step 1:** User enters name, email, password and submits. Frontend calls `POST /auth/signup`.
-- **Backend Action:** Xano creates the user (status: unverified), generates a 6-digit code, stores it in the `users` table, and simulates sending an email (or actually sends via SendGrid/Magic Link addon).
-- **Step 2:** Frontend displays a "Enter Code" form. User enters code and submits.
-- **Backend Action:** Frontend calls `POST /auth/verify`. Xano checks the code. If valid, marks user as verified and returns an auth token.
+### 1. Fluxo de Registro
+- **Passo 1:** O usuário informa nome, email e senha e submete. O frontend chama `POST /auth/signup`.
+- **Ação no Backend:** O Xano cria o usuário (status: unverified), gera um código de 6 dígitos, salva em `users` e simula/envia o email (via SendGrid ou similar).
+- **Passo 2:** O frontend exibe um formulário "Inserir Código". O usuário digita o código e submete.
+- **Ação no Backend:** O frontend chama `POST /auth/verify`. O Xano verifica o código; se válido, marca o usuário como verificado e retorna um token de autenticação.
 
-### 2. Password Reset Flow
-- **Step 1:** User enters email and submits. Frontend calls `POST /auth/password-reset`.
-- **Backend Action:** Xano finds the user, generates a reset code, stores it, and sends an email.
-- **Step 2:** Frontend displays a form for "Verification Code" and "New Password".
-- **Backend Action:** Frontend calls `POST /auth/reset-password-verify`. Xano validates the code and updates the password.
+### 2. Fluxo de Redefinição de Senha
+- **Passo 1:** O usuário informa o email e submete. O frontend chama `POST /auth/password-reset`.
+- **Ação no Backend:** O Xano encontra o usuário, gera um código de redefinição, salva no banco e envia o código por email.
+- **Passo 2:** O frontend exibe um formulário com "Código de Verificação" e "Nova Senha".
+- **Ação no Backend:** O frontend chama `POST /auth/reset-password-verify`. O Xano valida o código e atualiza a senha.
 
-### 3. Frontend Architecture
-- Modify `Register.jsx` and `PasswordReset.jsx` to use a `step` state variable (`step === 1` for initial form, `step === 2` for code verification).
-- Add new endpoints to `api.js`: `verifyRegistration(email, code)` and `verifyPasswordReset(email, code, newPassword)`.
+### 3. Arquitetura do Frontend
+- Modificar `Register.jsx` e `PasswordReset.jsx` para usar um estado `step` (`step === 1` para o formulário inicial e `step === 2` para verificação do código).
+- Adicionar novas funções em `api.js`: `verifyRegistration(email, code)` e `verifyPasswordReset(email, code, newPassword)`.
 
-## Risks / Trade-offs
-- **[Risk] Email Delivery:** If emails fail to send from Xano, users are locked out.
-  - **Mitigation:** Ensure the Xano step-by-step instructions clearly state how to verify the code generation in the database even if the email addon isn't fully configured.
+## Riscos / Compensações
+- **[Risco] Entrega de email:** Se os emails não forem entregues pelo Xano, usuários podem ficar travados.
+  - **Mitigação:** Documentar claramente como verificar o código gerado diretamente no banco (caso o addon de email não esteja configurado).

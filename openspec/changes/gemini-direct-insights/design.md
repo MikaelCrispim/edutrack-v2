@@ -22,7 +22,7 @@
 │       │       └── [{ title, status, due_date, ... }]    │
 │       │                                                 │
 │       ├─ 4. geminiService.generateInsightsWithGemini()  │
-│       │       └── buildStudentContext(subjects, tasks)   │
+│       │       └── buildStudentContext(subjects, tasks)  │
 │       │       └── monta prompt → chama Gemini API       │
 │       │       └── recebe → parseia JSON → string[]      │
 │       │                                                 │

@@ -1,50 +1,50 @@
-## Context
+## Contexto
 
-The application's subject management feature is functionally complete but lacks professional UI/UX. There is no global navigation, making it difficult for users to move between sections or log out. The styling is inconsistent and not based on a modern CSS framework, leading to a dated appearance and maintainability issues.
+O recurso de gerenciamento de disciplinas do aplicativo está funcional, mas carece de uma UI/UX profissional. Não há navegação global, o que dificulta a movimentação entre seções e o logout. A estilização é inconsistente e não baseada em um framework moderno de CSS, resultando em aparência desatualizada e problemas de manutenção.
 
-## Goals / Non-Goals
+## Objetivos / Não-objetivos
 
-**Goals:**
-- To establish a consistent and modern UI by integrating Tailwind CSS.
-- To provide clear, persistent navigation for authenticated users.
-- To improve the usability of forms by adding cancel/back functionality.
-- To refactor all subject-related components to use Tailwind CSS, making them responsive and visually appealing.
+**Objetivos:**
+- Estabelecer uma UI consistente e moderna integrando o Tailwind CSS.
+- Fornecer navegação persistente e clara para usuários autenticados.
+- Melhorar a usabilidade dos formulários adicionando funcionalidade de cancelar/voltar.
+- Refatorar todos os componentes relacionados a disciplinas para usar Tailwind CSS, tornando‑os responsivos e visualmente atraentes.
 
-**Non-Goals:**
-- This design will not introduce any new backend functionality.
-- It will not change the existing color palette or branding, but will apply it via Tailwind's configuration.
-- It will not cover the UI for any non-authenticated parts of the application (e.g., login, register pages).
+**Não-objetivos:**
+- Esta alteração não introduzirá nova funcionalidade de backend.
+- Não mudará a paleta de cores ou o branding já existentes; apenas aplicará via configuração do Tailwind.
+- Não cobrirá a UI de partes não autenticadas da aplicação (ex.: páginas de login ou registro).
 
-## Decisions
+## Decisões
 
-1.  **Tailwind CSS Integration:**
-    *   **Decision**: We will install and configure Tailwind CSS for the Vite-based frontend. This involves installing `tailwindcss`, `postcss`, and `autoprefixer`.
-    *   **Rationale**: Tailwind CSS provides a highly-efficient utility-first workflow, enabling rapid development of modern and responsive UIs. It's highly configurable and will allow us to create a consistent design system.
-    *   **Configuration**:
-        *   `tailwind.config.js`: Will be created to define the content paths (to scan for classes) and any theme customizations.
-        *   `postcss.config.js`: Will be created to include the `tailwindcss` and `autoprefixer` plugins.
-        *   `index.css`: The existing `frontend/src/index.css` will be cleared and replaced with the three primary Tailwind directives: `@tailwind base;`, `@tailwind components;`, and `@tailwind utilities;`.
+1.  **Integração do Tailwind CSS:**
+    *   **Decisão**: Vamos instalar e configurar o Tailwind CSS para o frontend baseado em Vite, incluindo `tailwindcss`, `postcss` e `autoprefixer`.
+    *   **Justificativa**: Tailwind fornece um fluxo de trabalho utilitário eficiente, permitindo desenvolvimento rápido de UIs modernas e responsivas. É altamente configurável e facilita a criação de um sistema de design consistente.
+    *   **Configuração**:
+        *   `tailwind.config.js`: Será criado para definir os paths de conteúdo (scan de classes) e eventuais customizações de tema.
+        *   `postcss.config.js`: Será criado para incluir os plugins `tailwindcss` e `autoprefixer`.
+        *   `index.css`: O `frontend/src/index.css` existente será limpo e substituído pelas três diretivas principais do Tailwind: `@tailwind base;`, `@tailwind components;` e `@tailwind utilities;`.
 
-2.  **Layout and Navigation Structure:**
-    *   **Decision**: A new `MainLayout.jsx` component will be created. This component will render a `Navbar` and an `<Outlet />` from `react-router-dom`. The `ProtectedRoute` will be modified to render its children within this `MainLayout`.
-    *   **Rationale**: This creates a clear separation between the layout (navigation) and the page content. It ensures that any route nested under `ProtectedRoute` automatically gets the global navigation bar.
-    *   **Navbar Component**: A new `Navbar.jsx` component will be created. It will contain:
-        *   A `NavLink` from `react-router-dom` pointing to `/subjects` (as the new home/dashboard).
-        *   A "Logout" button that, when clicked, will clear the auth token from `localStorage` and navigate the user to `/login`.
+2.  **Estrutura de Layout e Navegação:**
+    *   **Decisão**: Criar um componente `MainLayout.jsx` que renderize o `Navbar` e um `<Outlet />` do `react-router-dom`. O `ProtectedRoute` será ajustado para renderizar seus filhos dentro deste `MainLayout`.
+    *   **Justificativa**: Isso separa claramente o layout (navegação) do conteúdo da página e garante que qualquer rota aninhada em `ProtectedRoute` receba a barra de navegação global automaticamente.
+    *   **Componente Navbar**: Criar `Navbar.jsx` contendo:
+        *   Um `NavLink` do `react-router-dom` apontando para `/subjects` (novo home/painel).
+        *   Um botão "Logout" que, ao ser clicado, remova o token de autenticação de `localStorage` e navegue o usuário para `/login`.
 
-3.  **Component Refactoring:**
-    *   **Decision**: The components `SubjectList`, `SubjectCard`, `SubjectCreate`, and `SubjectEdit` will be completely rewritten to use Tailwind CSS utility classes. The existing CSS in `App.css` related to these components will be removed.
-    *   **Rationale**: This is essential for achieving a consistent and modern look and feel. It also centralizes the styling logic within the components themselves, improving maintainability.
-    *   **Specifics**:
-        *   `SubjectList`: Will use Tailwind's grid utilities (e.g., `grid`, `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`, `gap-4`).
-        *   `SubjectCard`: Will use utilities for padding (`p-4`), shadows (`shadow-lg`), rounded corners (`rounded-md`), and background colors (`bg-white`).
-        *   `SubjectCreate`/`SubjectEdit`: Forms will be styled using Tailwind's form plugin utilities if available, or custom utility classes for inputs, labels, and buttons to ensure they are clean, aligned, and have proper spacing. A "Cancel" button will be added, which will use the `useNavigate` hook to go back to the previous page (`navigate(-1)`).
+3.  **Refatoração de Componentes:**
+    *   **Decisão**: Reescrever `SubjectList`, `SubjectCard`, `SubjectCreate` e `SubjectEdit` para utilizar classes utilitárias do Tailwind. O CSS existente em `App.css` relacionado a estes componentes será removido.
+    *   **Justificativa**: Essencial para alcançar um visual consistente e moderno, além de centralizar a lógica de estilização nos próprios componentes, melhorando a manutenibilidade.
+    *   **Especificações**:
+        *   `SubjectList`: Usará utilitários de grid do Tailwind (ex.: `grid`, `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`, `gap-4`).
+        *   `SubjectCard`: Usará utilitários de padding (`p-4`), sombras (`shadow-lg`), cantos arredondados (`rounded-md`) e cores de fundo (`bg-white`).
+        *   `SubjectCreate`/`SubjectEdit`: Os formulários serão estilizados usando utilitários (ou plugin de formulários do Tailwind, se disponível) para inputs, labels e botões, garantindo espaçamento e alinhamento. Será adicionado um botão "Cancelar" que utilize `useNavigate` para voltar à página anterior (`navigate(-1)`).
 
-## Risks / Trade-offs
+## Riscos / Compensações
 
--   **Risk**: Incorrectly purging CSS classes. Tailwind's production build removes unused classes. If the `content` paths in `tailwind.config.js` are not configured correctly, it could lead to broken styles in the production build.
-    -   **Mitigation**: We must ensure that the `content` array in `tailwind.config.js` correctly points to all files containing JSX and HTML (`./src/**/*.{js,jsx,ts,tsx}`).
--   **Trade-off**: The initial setup of Tailwind CSS adds a small amount of configuration complexity.
-    -   **Rationale**: The long-term benefits in development speed, maintainability, and UI consistency far outweigh the initial setup cost.
--   **Risk**: Global CSS conflicts. The `@tailwind base` directive resets some default browser styles.
-    -   **Mitigation**: This is generally a desired effect for consistency. We will test the application to ensure this doesn't negatively impact any other existing styles that we wish to keep. Since we are refactoring the main components, this risk is low.
+-   **Risco**: Purga incorreta de classes CSS. A build de produção do Tailwind remove classes não utilizadas; se os paths em `tailwind.config.js` não estiverem corretos, estilos podem quebrar em produção.
+    -   **Mitigação**: Garantir que o array `content` em `tailwind.config.js` aponte corretamente para todos os arquivos que contêm JSX/HTML (`./src/**/*.{js,jsx,ts,tsx}`).
+-   **Compensação**: A configuração inicial do Tailwind adiciona alguma complexidade.
+    -   **Justificativa**: Os benefícios a longo prazo em velocidade de desenvolvimento, manutenção e consistência da UI superam o custo inicial.
+-   **Risco**: Conflitos de CSS global. A diretiva `@tailwind base` redefine alguns estilos padrão do navegador.
+    -   **Mitigação**: Esse efeito é desejado para consistência. Testaremos a aplicação para garantir que não impacte negativamente outros estilos que queiramos manter. Como estamos refatorando os principais componentes, esse risco é baixo.

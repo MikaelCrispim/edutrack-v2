@@ -1,26 +1,26 @@
-## Why
+## Por que
 
-The application currently lacks key indicators for users to track their academic progress effectively. Displaying metrics like subject counts, pending tasks, and completion percentages will provide immediate, valuable feedback. Furthermore, incorporating AI-generated insights will offer personalized guidance, helping users identify areas for improvement and focus their efforts more strategically.
+A aplicação carece atualmente de indicadores-chave que permitam aos usuários acompanhar o progresso acadêmico de forma eficaz. Exibir métricas como contagem de disciplinas, tarefas pendentes e percentuais de conclusão fornece feedback imediato e valioso. Além disso, incorporar insights gerados por IA oferece orientações personalizadas, ajudando os usuários a identificar áreas de melhoria e a focar esforços.
 
-## What Changes
+## O que será alterado
 
--   A new dashboard summary section will be added to display key progress indicators.
--   An AI-powered insights section will be introduced to provide users with personalized feedback and suggestions.
--   Backend services will be developed to calculate progress metrics and generate AI insights.
+- Será adicionada uma seção de resumo no painel para exibir indicadores de progresso.
+- Será introduzida uma seção de insights alimentada por IA para fornecer feedback e sugestões personalizadas.
+- Serviços de backend serão desenvolvidos para calcular métricas de progresso e gerar insights por IA.
 
-## Capabilities
+## Capacidades
 
-### New Capabilities
+### Novas Capacidades
 
--   `dashboard-summary`: Provides users with a clear, at-a-glance view of their academic progress, including the number of subjects, pending activities, and completion rates.
--   `ai-insights`: Delivers personalized, AI-driven feedback and recommendations to help users understand their progress, identify strengths and weaknesses, and discover opportunities for improvement.
+- `dashboard-summary`: Fornece uma visão rápida do progresso acadêmico do usuário, incluindo número de disciplinas, atividades pendentes e taxa de conclusão.
+- `ai-insights`: Entrega feedback e recomendações personalizadas por IA para ajudar o usuário a entender seu progresso, identificar pontos fortes e fracos e descobrir oportunidades de melhoria.
 
-### Modified Capabilities
+### Capacidades Modificadas
 
--   None
+- Nenhuma
 
-## Impact
+## Impacto
 
--   **Frontend**: New components will be created for the dashboard summary and AI insights. The main dashboard page will be updated to include these new components.
--   **Backend**: New API endpoints will be required to serve the data for the new dashboard features. This will likely involve new logic for calculating progress and integrating with an AI service.
--   **Database**: A new table may be needed to store the AI-generated insights for each user.
+- **Frontend**: Novos componentes serão criados para o resumo do painel e os insights de IA. A página principal do painel será atualizada para incluir esses componentes.
+- **Backend**: Novos endpoints de API serão necessários para fornecer os dados das novas funcionalidades; envolverá lógica adicional para calcular progresso e integrar com um serviço de IA.
+- **Banco de Dados**: Pode ser necessária uma nova tabela para armazenar insights gerados por IA para cada usuário.

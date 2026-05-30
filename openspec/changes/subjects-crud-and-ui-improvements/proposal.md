@@ -1,29 +1,29 @@
-## Why
+## Por que
 
-The current subjects module lacks complete CRUD functionality and has a basic UI. This change will implement the full set of create, read, update, and delete operations and introduce a more professional and user-friendly card-based layout for displaying subjects, making the module feature-complete and improving the overall user experience.
+O módulo de disciplinas atual carece de funcionalidades CRUD completas e possui uma UI básica. Esta mudança implementará o conjunto completo de operações de criar, ler, atualizar e remover, além de introduzir um layout baseado em cartões mais profissional e amigável, tornando o módulo completo e melhorando a experiência do usuário.
 
-## What Changes
+## O que será alterado
 
-- Add a form with fields for `name`, `professor`, `course_load`, `description`, `start_date`, and `end_date` for creating and editing subjects.
-- Implement a "Delete" button on each subject item in the list to remove it from the system.
-- Implement an "Edit" button on each subject item to allow modification of its details.
-- Redesign the subject list from a plain text view to a responsive grid of cards.
-- Separate the creation/edit form from the list view for a cleaner layout.
+- Adicionar um formulário com os campos `name`, `professor`, `course_load`, `description`, `start_date` e `end_date` para criação e edição de disciplinas.
+- Implementar um botão "Excluir" em cada item da lista de disciplinas para removê‑lo do sistema.
+- Implementar um botão "Editar" em cada item para permitir a modificação dos detalhes.
+- Redesenhar a lista de disciplinas de uma visualização em texto para um grid responsivo de cartões.
+- Separar o formulário de criação/edição da visualização da lista para um layout mais limpo.
 
-## Capabilities
+## Capacidades
 
-### New Capabilities
-- `subjects-crud`: Full create, read, update, and delete functionality for the subjects module.
+### Novas Capacidades
+- `subjects-crud`: Funcionalidade completa de criar, ler, atualizar e remover para o módulo de disciplinas.
 
-### Modified Capabilities
-- None
+### Capacidades Modificadas
+- Nenhuma
 
-## Impact
+## Impacto
 
 - **Frontend:**
-  - `frontend/src/components/subjects/SubjectList.jsx`: Will be significantly updated to include edit/delete buttons and a card-based UI.
-  - `frontend/src/components/subjects/SubjectCreate.jsx`: Will be updated with additional form fields.
-  - `frontend/src/components/subjects/SubjectEdit.jsx`: A new component will be created for editing subjects.
-  - `frontend/src/api.js`: May require new functions to handle `PATCH`/`PUT` and `DELETE` requests for subjects.
+  - `frontend/src/components/subjects/SubjectList.jsx`: Será atualizado para incluir botões de editar/excluir e UI baseada em cartões.
+  - `frontend/src/components/subjects/SubjectCreate.jsx`: Será atualizado com campos adicionais no formulário.
+  - `frontend/src/components/subjects/SubjectEdit.jsx`: Novo componente para edição de disciplinas.
+  - `frontend/src/api.js`: Pode requerer novas funções para `PATCH`/`PUT` e `DELETE` para `subjects`.
 - **Backend:**
-  - The `DELETE /subjects/{id}` and `PATCH /subjects/{id}` (or `PUT`) endpoints will be used.
+  - Serão usados os endpoints `DELETE /subjects/{id}` e `PATCH /subjects/{id}` (ou `PUT`).

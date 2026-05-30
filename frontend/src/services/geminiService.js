@@ -1,6 +1,28 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+function getApiKey() {
+  // 1) Jest / Node environment: use process.env
+  if (typeof process !== 'undefined' && process.env && process.env.VITE_GEMINI_API_KEY) {
+    return process.env.VITE_GEMINI_API_KEY;
+  }
+
+  // 2) Try to read import.meta.env dynamically without using the token directly (keeps Jest parser happy)
+  try {
+    // use eval so the literal `import.meta` does not appear in the static source
+    // eslint-disable-next-line no-eval
+    const val = (0, eval)('import.meta && import.meta.env && import.meta.env.VITE_GEMINI_API_KEY');
+    if (val) return val;
+  } catch (e) {
+    // ignore
+  }
+
+  // 3) Browser fallback: check for a global injected variable (optional)
+  if (typeof window !== 'undefined' && window.__ENV__ && window.__ENV__.VITE_GEMINI_API_KEY) {
+    return window.__ENV__.VITE_GEMINI_API_KEY;
+  }
+
+  return '';
+}
 
 /**
  * Monta o contexto do estudante em texto para o prompt do Gemini.

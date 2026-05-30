@@ -1,35 +1,35 @@
-## Why
+## Por que
 
-The current subjects module, while functional, suffers from a poor user experience and a dated look. Key navigation elements are missing, and the styling is inconsistent. This change will address these issues by implementing a global navigation bar, setting up Tailwind CSS for a modern design system, and refactoring the subject-related components to use Tailwind for a professional and responsive UI.
+O módulo de disciplinas atual, embora funcional, sofre com uma experiência do usuário frágil e aparência desatualizada. Elementos-chave de navegação estão ausentes e a estilização é inconsistente. Esta mudança resolve esses problemas implementando uma barra de navegação global, configurando o Tailwind CSS para um sistema de design moderno e refatorando os componentes relacionados a disciplinas para usar Tailwind, resultando em uma UI profissional e responsiva.
 
-## What Changes
+## O que será alterado
 
-- Create a persistent `Navbar` component for authenticated users with links to the dashboard and a functional logout button.
-- Add "Cancel/Back" buttons to the `SubjectCreate` and `SubjectEdit` forms.
-- **BREAKING**: Remove the previously added CSS for subjects from `App.css`.
-- Install and configure Tailwind CSS, PostCSS, and Autoprefixer for the Vite project.
-- Refactor `SubjectList`, `SubjectCard`, `SubjectCreate`, and `SubjectEdit` components to use Tailwind CSS utility classes exclusively for styling.
-- The `SubjectList` will be redesigned as a responsive grid of modern cards.
-- Forms will be restyled to be professional and user-friendly.
+- Criar um componente persistente `Navbar` para usuários autenticados com links para o painel e um botão de logout funcional.
+- Adicionar botões "Cancelar/Voltar" nos formulários `SubjectCreate` e `SubjectEdit`.
+- **BREAKING**: Remover o CSS previamente adicionado para disciplinas em `App.css`.
+- Instalar e configurar Tailwind CSS, PostCSS e Autoprefixer para o projeto Vite.
+- Refatorar `SubjectList`, `SubjectCard`, `SubjectCreate` e `SubjectEdit` para usar exclusivamente classes utilitárias do Tailwind para estilização.
+- Redesenhar `SubjectList` como uma grade responsiva de cartões modernos.
+- Restilizar formulários para torná‑los profissionais e fáceis de usar.
 
-## Capabilities
+## Capacidades
 
-### New Capabilities
-- `global-navigation`: Provides a consistent navigation bar for authenticated users.
+### Novas Capacidades
+- `global-navigation`: Fornece uma barra de navegação consistente para usuários autenticados.
 
-### Modified Capabilities
-- `subjects-crud`: The UI/UX of the existing subjects CRUD functionality will be significantly improved with a modern, responsive design using Tailwind CSS.
+### Capacidades Modificadas
+- `subjects-crud`: A interface e experiência do CRUD de disciplinas serão significativamente melhoradas com um design moderno e responsivo usando Tailwind CSS.
 
-## Impact
+## Impacto
 
-- **Project Configuration:**
-  - `package.json`: Will be updated with new dev dependencies (`tailwindcss`, `postcss`, `autoprefixer`).
-  - `tailwind.config.js`: New file will be created.
-  - `postcss.config.js`: New file might be created.
-  - `frontend/src/index.css`: Will be updated to include Tailwind directives.
-- **Frontend Components:**
-  - `Navbar.jsx`: A new component will be created.
-  - `App.jsx`: Will be modified to include the `Navbar` in the layout for protected routes.
-  - `SubjectList.jsx`, `SubjectCard.jsx`, `SubjectCreate.jsx`, `SubjectEdit.jsx`: Will be heavily refactored to use Tailwind CSS instead of plain CSS classes.
+- **Configuração do projeto:**
+  - `package.json`: Será atualizado com novas dependências de desenvolvimento (`tailwindcss`, `postcss`, `autoprefixer`).
+  - `tailwind.config.js`: Novo arquivo será criado.
+  - `postcss.config.js`: Novo arquivo poderá ser criado.
+  - `frontend/src/index.css`: Será atualizado para incluir as diretivas do Tailwind.
+- **Componentes do Frontend:**
+  - `Navbar.jsx`: Novo componente será criado.
+  - `App.jsx`: Será modificado para incluir o `Navbar` no layout das rotas protegidas.
+  - `SubjectList.jsx`, `SubjectCard.jsx`, `SubjectCreate.jsx`, `SubjectEdit.jsx`: Serão amplamente refatorados para usar Tailwind em vez de classes CSS convencionais.
 - **CSS:**
-  - `App.css`: The CSS rules for the subjects module will be removed.
+  - `App.css`: As regras CSS do módulo de disciplinas serão removidas.

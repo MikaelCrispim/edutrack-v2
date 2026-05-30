@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import PasswordResetPage from './pages/PasswordResetPage';
 import DashboardPage from './pages/DashboardPage';
+import TasksPage from './pages/TasksPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainLayout from './components/MainLayout';
 import SubjectList from './components/subjects/SubjectList';
@@ -24,6 +25,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<MainLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/tasks" element={<TasksPage />} />
             <Route path="/subjects" element={<SubjectList />} />
             <Route path="/subjects/new" element={<SubjectCreate />} />
             <Route path="/subjects/:id/edit" element={<SubjectEdit />} />

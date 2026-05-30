@@ -6,6 +6,7 @@ function Sidebar({ isOpen, onClose }) {
     { path: '/dashboard', label: 'Painel', icon: '📊' },
     { path: '/subjects', label: 'Minhas Disciplinas', icon: '📚' },
     { path: '/subjects/new', label: 'Nova Disciplina', icon: '✏️' },
+    { path: '/tasks', label: 'Tarefas', icon: '✅' },
   ];
 
   return (

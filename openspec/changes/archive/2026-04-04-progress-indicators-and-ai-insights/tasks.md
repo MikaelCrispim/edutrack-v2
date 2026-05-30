@@ -1,20 +1,20 @@
-## 1. Backend Implementation
+## 1. Implementação no Backend
 
-- [x] 1.1 Create the `ai_insights` table in the database with the schema defined in the design document.
-- [x] 1.2 Implement the `GET /api/dashboard/summary` endpoint. This includes creating the service to calculate the progress metrics.
-- [x] 1.3 Implement the `GET /api/ai/insights` endpoint. This includes the logic to fetch the latest insights from the `ai_insights` table.
-- [ ] 1.4 (Optional) Implement the AI insight generation logic. This can be a scheduled task or a trigger-based system that calls an AI service and stores the results in the `ai_insights` table. (skipped)
+- [x] 1.1 Criar a tabela `ai_insights` no banco com o esquema definido no design.
+- [x] 1.2 Implementar o endpoint `GET /api/dashboard/summary`, incluindo o serviço de cálculo das métricas de progresso.
+- [x] 1.3 Implementar o endpoint `GET /api/ai/insights`, incluindo a lógica para buscar os insights mais recentes na tabela `ai_insights`.
+- [ ] 1.4 (Opcional) Implementar a lógica de geração de insights por IA (tarefa agendada ou trigger que chama o serviço de IA e armazena os resultados). (skipped)
 
-## 2. Frontend Implementation
+## 2. Implementação no Frontend
 
-- [x] 2.1 Create the `DashboardSummary.jsx` component.
-- [x] 2.2 Connect the `DashboardSummary.jsx` component to the `/api/dashboard/summary` endpoint.
-- [x] 2.3 Create the `AIInsights.jsx` component.
-- [x] 2.4 Connect the `AIInsights.jsx` component to the `/api/ai/insights` endpoint.
-- [x] 2.5 Update the `DashboardPage.jsx` to integrate the `DashboardSummary.jsx` and `AIInsights.jsx` components.
+- [x] 2.1 Criar o componente `DashboardSummary.jsx`.
+- [x] 2.2 Conectar `DashboardSummary.jsx` ao endpoint `/api/dashboard/summary`.
+- [x] 2.3 Criar o componente `AIInsights.jsx`.
+- [x] 2.4 Conectar `AIInsights.jsx` ao endpoint `/api/ai/insights`.
+- [x] 2.5 Atualizar `DashboardPage.jsx` para integrar `DashboardSummary.jsx` e `AIInsights.jsx`.
 
-## 3. Testing
+## 3. Testes
 
-- [ ] 3.1 Write unit tests for the new backend endpoints. (skipped)
-- [x] 3.2 Write unit tests for the new frontend components.
-- [ ] 3.3 Perform end-to-end testing to ensure the new dashboard features work as expected. (skipped)
+- [ ] 3.1 Escrever testes unitários para os novos endpoints do backend. (skipped)
+- [x] 3.2 Escrever testes unitários para os novos componentes frontend.
+- [ ] 3.3 Realizar testes end-to-end para validar as novas funcionalidades do painel. (skipped)

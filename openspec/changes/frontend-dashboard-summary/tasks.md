@@ -1,19 +1,19 @@
-## 1. API Integration
+## 1. Integração com a API
 
-- [x] 1.1 In `frontend/src/api.js`, add the `getDashboardSummary` function to make a `GET` request to the `/summary` endpoint.
+- [x] 1.1 Em `frontend/src/api.js`, adicionar `getDashboardSummary` para realizar `GET` no endpoint `/summary`.
 
-## 2. Component Implementation
+## 2. Implementação do Componente
 
-- [x] 2.1 Create the `DashboardSummary.jsx` file in `frontend/src/components/dashboard/`.
-- [x] 2.2 Implement state management for `summaryData`, `loading`, and `error`.
-- [x] 2.3 Implement the `useEffect` hook to fetch data on component mount.
-- [x] 2.4 Build the UI for the loading state (spinner).
-- [x] 2.5 Build the UI for the error state (red alert box).
-- [x] 2.6 Build the main grid layout for the statistics.
-- [x] 2.7 Create the cards for Total Subjects, Pending Activities, and Completion Rate, incorporating styling and the progress bar.
+- [x] 2.1 Criar `DashboardSummary.jsx` em `frontend/src/components/dashboard/`.
+- [x] 2.2 Implementar estados `summaryData`, `loading` e `error`.
+- [x] 2.3 Implementar `useEffect` para buscar dados no mount.
+- [x] 2.4 Construir UI para o estado de carregamento (spinner).
+- [x] 2.5 Construir UI para o estado de erro (caixa de alerta vermelha).
+- [x] 2.6 Construir layout principal em grid para as estatísticas.
+- [x] 2.7 Criar cartões para Total de Disciplinas, Atividades Pendentes e Percentual de Conclusão, com estilização e barra de progresso.
 
-## 3. Dashboard Integration
+## 3. Integração no Dashboard
 
-- [x] 3.1 Open `frontend/src/pages/DashboardPage.jsx`.
-- [x] 3.2 Import the `DashboardSummary` component.
-- [x] 3.3 Add the component to the page layout, positioned below the header and above the Subjects list.
+- [x] 3.1 Abrir `frontend/src/pages/DashboardPage.jsx`.
+- [x] 3.2 Importar `DashboardSummary`.
+- [x] 3.3 Adicionar o componente ao layout, abaixo do header e acima da lista de disciplinas.

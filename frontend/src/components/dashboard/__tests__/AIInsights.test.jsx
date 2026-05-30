@@ -26,7 +26,7 @@ describe('AIInsights', () => {
     render(<AIInsights />);
 
     await waitFor(() => {
-      expect(screen.getByText('AI Insights')).toBeInTheDocument();
+      expect(screen.getByText(/Insights da IA/)).toBeInTheDocument();
       expect(screen.getByText('Test insight 1')).toBeInTheDocument();
       expect(screen.getByText('Test insight 2')).toBeInTheDocument();
     });
@@ -38,7 +38,7 @@ describe('AIInsights', () => {
     render(<AIInsights />);
 
     await waitFor(() => {
-      expect(screen.getByText('Failed to fetch AI insights')).toBeInTheDocument();
+      expect(screen.getByText(/Falha ao carregar os insights de IA/)).toBeInTheDocument();
     });
   });
 
@@ -49,7 +49,7 @@ describe('AIInsights', () => {
     render(<AIInsights />);
 
     await waitFor(() => {
-      expect(screen.getByText('No insights available yet. Keep up the good work!')).toBeInTheDocument();
+      expect(screen.getByText(/Nenhum insight ainda!/)).toBeInTheDocument();
     });
   });
 });

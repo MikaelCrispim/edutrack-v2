@@ -1,48 +1,48 @@
-## 1. Xano Backend Setup (Manual Configuration)
+## 1. Configuração do Backend no Xano (Passo a passo)
 
-Please follow these exact steps in your Xano workspace to configure the code verification routes.
+Siga estes passos no seu workspace Xano para configurar rotas de verificação por código.
 
-### 1.1 Update the `users` Table
-1. Go to your **Database** in Xano and select the `users` table.
-2. Add a new field: type **Text**, name it `verification_code`.
-3. Add a new field: type **Boolean**, name it `is_verified` (Default: `false`).
+### 1.1 Atualizar a tabela `users`
+1. Acesse **Database** no Xano e selecione a tabela `users`.
+2. Adicione um campo: tipo **Text**, nome `verification_code`.
+3. Adicione um campo: tipo **Boolean**, nome `is_verified` (Default: `false`).
 
-### 1.2 Update `/auth/signup` Endpoint
-1. Go to your `/auth/signup` endpoint.
-2. After the step where you "Add Record" to the `users` table, add a new **Utility -> Generate Random String/Number** step to create a 6-digit code.
-3. Add an **Edit Record** step to save this code to the `verification_code` field for the newly created user.
-4. *(Optional)* Add a step to send an email with this code (using SendGrid or similar).
+### 1.2 Atualizar o endpoint `/auth/signup`
+1. Abra o endpoint `/auth/signup`.
+2. Após o passo que faz `Add Record` em `users`, adicione uma etapa **Utility -> Generate Random String/Number** para criar um código de 6 dígitos.
+3. Adicione um passo **Edit Record** para salvar esse código em `verification_code` para o usuário criado.
+4. *(Opcional)* Adicione um passo para enviar um email com o código (SendGrid ou similar).
 
-### 1.3 Create `/auth/verify` Endpoint
-1. Create a new API Endpoint: `POST /auth/verify`.
-2. Add Inputs: `email` (Text) and `code` (Text).
-3. **Function Stack:**
-   - **Query Record:** Find the user in the `users` table where `email` matches the input.
-   - **Precondition:** Check if `user.verification_code` equals the input `code`. If not, throw an error ("Invalid code").
-   - **Edit Record:** Update the user, setting `is_verified` to `true` and clearing `verification_code` (set to null/empty).
-   - **Create Auth Token:** Generate a token for this user and return it.
+### 1.3 Criar o endpoint `/auth/verify`
+1. Crie um novo endpoint: `POST /auth/verify`.
+2. Adicione Inputs: `email` (Text) e `code` (Text).
+3. **Fluxo da Função:**
+   - **Query Record:** Buscar o usuário em `users` onde `email` corresponde ao input.
+   - **Precondition:** Verificar se `user.verification_code` é igual ao `code` recebido; se não, retornar erro ("Código inválido").
+   - **Edit Record:** Atualizar o usuário, definindo `is_verified` como `true` e limpando `verification_code`.
+   - **Create Auth Token:** Gerar e retornar um token para o usuário.
 
-### 1.4 Update `/auth/password-reset` Endpoint
-1. In your existing `/auth/password-reset` endpoint, after finding the user, generate a 6-digit code.
-2. Save this code to the user's `verification_code` field.
-3. Send this code via email.
+### 1.4 Atualizar o endpoint `/auth/password-reset`
+1. No endpoint `/auth/password-reset`, após localizar o usuário, gerar um código de 6 dígitos.
+2. Salvar esse código em `verification_code` do usuário.
+3. Enviar o código por email.
 
-### 1.5 Create `/auth/reset-password-verify` Endpoint
-1. Create a new API Endpoint: `POST /auth/reset-password-verify`.
-2. Add Inputs: `email` (Text), `code` (Text), and `new_password` (Password).
-3. **Function Stack:**
-   - **Query Record:** Find the user by `email`.
-   - **Precondition:** Check if `user.verification_code` equals the input `code`.
-   - **Edit Record:** Update the user's password with the `new_password` input, and clear the `verification_code`.
+### 1.5 Criar o endpoint `/auth/reset-password-verify`
+1. Criar novo endpoint: `POST /auth/reset-password-verify`.
+2. Adicionar Inputs: `email` (Text), `code` (Text) e `new_password` (Password).
+3. **Fluxo da Função:**
+   - **Query Record:** Buscar o usuário por `email`.
+   - **Precondition:** Verificar se `user.verification_code` é igual ao `code` recebido.
+   - **Edit Record:** Atualizar a senha do usuário com `new_password` e limpar `verification_code`.
 
 ---
 
-## 2. Frontend Integration
+## 2. Integração no Frontend
 
-- [x] 2.1 In `frontend/src/api.js`, add functions for the new verification endpoints (`verifyRegistration` and `verifyPasswordReset`).
-- [x] 2.2 In `frontend/src/components/auth/Register.jsx`, add a state for `step` (1 or 2).
-- [x] 2.3 Update `Register.jsx` so that on successful signup, it moves to step 2 and displays an input for the verification code.
-- [x] 2.4 Handle the submit for step 2 by calling `verifyRegistration` and logging the user in upon success.
-- [x] 2.5 In `frontend/src/components/auth/PasswordReset.jsx`, add a state for `step`.
-- [x] 2.6 Update `PasswordReset.jsx` so that on successful email submission, it moves to step 2 and displays inputs for the Verification Code and New Password.
-- [x] 2.7 Handle the submit for step 2 by calling `verifyPasswordReset` and redirecting to login upon success.
+- [x] 2.1 Em `frontend/src/api.js`, adicionar funções para os novos endpoints de verificação (`verifyRegistration` e `verifyPasswordReset`).
+- [x] 2.2 Em `frontend/src/components/auth/Register.jsx`, adicionar estado `step` (1 ou 2).
+- [x] 2.3 Atualizar `Register.jsx` para, após signup bem‑sucedido, avançar para o passo 2 e exibir o input do código.
+- [x] 2.4 No passo 2, chamar `verifyRegistration` e efetuar login ao receber sucesso.
+- [x] 2.5 Em `frontend/src/components/auth/PasswordReset.jsx`, adicionar estado `step`.
+- [x] 2.6 Atualizar `PasswordReset.jsx` para, após envio do email, avançar para o passo 2 e exibir inputs para Código e Nova Senha.
+- [x] 2.7 No passo 2, chamar `verifyPasswordReset` e redirecionar para login ao receber sucesso.

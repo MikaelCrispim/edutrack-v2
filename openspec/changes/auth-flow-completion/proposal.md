@@ -1,19 +1,19 @@
-## Why
+## Por que
 
-The current authentication implementation allows users to register and request password resets, but it lacks the final verification step. To ensure security and valid contact information, the system must verify user emails during registration and require a verification code to reset passwords.
+A implementação atual de autenticação permite cadastro e solicitação de redefinição de senha, mas falta a etapa final de verificação. Para garantir segurança e contato válido, o sistema deve verificar o email durante o registro e exigir um código para redefinição de senha.
 
-## What Changes
+## O que será alterado
 
-- **Backend (Xano):** Addition of database fields to store verification codes, and creation of endpoints to verify registration and handle password resets using these codes.
-- **Frontend:** Updates to `Register.jsx` and `PasswordReset.jsx` to include an additional step where the user enters the verification code sent to their email.
+- **Backend (Xano):** Adição de campos no banco para armazenar códigos de verificação e criação de endpoints para verificar registro e tratar redefinição de senha usando estes códigos.
+- **Frontend:** Atualizações em `Register.jsx` e `PasswordReset.jsx` para incluir a etapa onde o usuário insere o código recebido por email.
 
-## Capabilities
+## Capacidades
 
-### Modified Capabilities
+### Capacidades Modificadas
 
-- `user-auth`: Upgraded to include email verification via code for both registration and password reset flows.
+- `user-auth`: Aprimorado para incluir verificação por código via email nos fluxos de registro e redefinição de senha.
 
-## Impact
+## Impacto
 
-- **Frontend:** Minor UI changes to auth components to add step-based forms (e.g., Step 1: Request, Step 2: Verify Code). Addition of new API functions in `src/api.js`.
-- **Backend:** Significant additions to the Xano auth logic, requiring new endpoints and table modifications to store and check codes.
+- **Frontend:** Pequenas mudanças de UI nos componentes de auth para adicionar formulários em passos (ex.: Passo 1: Solicitar, Passo 2: Verificar Código). Inclusão de novas funções de API em `src/api.js`.
+- **Backend:** Alterações significativas na lógica de auth do Xano, requerendo novos endpoints e alterações na tabela para armazenar e validar códigos.

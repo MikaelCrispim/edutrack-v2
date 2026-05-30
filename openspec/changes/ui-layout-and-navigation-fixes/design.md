@@ -1,32 +1,32 @@
-## Context
+## Contexto
 
-This document outlines the technical design for fixing layout and navigation issues reported in the EduTrack MVP.
+Este documento descreve o design técnico para corrigir problemas de layout e navegação reportados no MVP EduTrack.
 
-## Goals / Non-Goals
+## Objetivos / Não‑Objetivos
 
-**Goals:**
-- Fix the sidebar width/display issue occurring at 1024px.
-- Improve visual feedback (hover, pointer) on Navbar interactive elements.
-- Convert the "New Subject" inline form into a centered Modal overlay.
+**Objetivos:**
+- Corrigir o problema de largura/exibição da sidebar que ocorre por volta de 1024px.
+- Melhorar feedback visual (hover, cursor pointer) nos elementos interativos da Navbar.
+- Converter o formulário inline de "Nova Disciplina" em um modal centralizado.
 
-**Non-Goals:**
-- Changing the overall color scheme or routing structure.
-- Modifying backend APIs for subject creation.
+**Não‑Objetivos:**
+- Alterar o esquema de cores geral ou a estrutura de rotas.
+- Modificar APIs do backend para criação de disciplinas.
 
-## Decisions
+## Decisões
 
-### 1. Sidebar Responsiveness
-- **Current Issue:** The `Sidebar` uses `w-64` and transitions to static positioning at the `lg` (1024px) breakpoint, but the main layout might not have enough space, or the mobile toggle doesn't match this breakpoint.
-- **Decision:** We will review the `Sidebar.jsx` and `MainLayout.jsx` to ensure they use a consistent breakpoint (e.g., `md` or `lg`) for toggling between the fixed mobile drawer and the static desktop sidebar. We will ensure the `lg:translate-x-0` behaves correctly without overlapping the main content.
+### 1. Responsividade da Sidebar
+- **Problema Atual:** A `Sidebar` usa `w-64` e faz a transição para posicionamento estático no breakpoint `lg` (1024px), mas o layout principal pode não ter espaço suficiente, ou o toggle mobile não coincide com esse breakpoint.
+- **Decisão:** Revisar `Sidebar.jsx` e `MainLayout.jsx` para garantir uso consistente de breakpoint (ex.: `md` ou `lg`) ao alternar entre drawer mobile fixo e sidebar desktop estática. Garantir que `lg:translate-x-0` não sobreponha o conteúdo principal.
 
-### 2. Navbar Interactive Elements
-- **Current Issue:** Buttons lack the feeling of interactivity.
-- **Decision:** In `Navbar.jsx`, ensure all `<button>` and `<NavLink>` elements have the `cursor-pointer` class (if not implicit) and clear hover styles, like `hover:bg-white/20` for the toggle and logout buttons.
+### 2. Elementos Interativos da Navbar
+- **Problema Atual:** Botões não transmitem sensação de interatividade.
+- **Decisão:** Em `Navbar.jsx`, garantir que todos os `<button>` e `<NavLink>` tenham `cursor-pointer` e estilos de hover claros (ex.: `hover:bg-white/20`) para toggle e logout.
 
-### 3. "New Subject" Modal
-- **Current Issue:** `DashboardPage.jsx` renders `SubjectCreate` inline using a simple conditional `showCreateForm && <SubjectCreate />`.
-- **Decision:** We will wrap the `SubjectCreate` component inside a fixed full-screen div (`fixed inset-0 z-50 bg-black/50`) that centers the form. This will act as a Modal. We will add a close button (X) to dismiss the modal, and ensure clicking outside the form area also closes it.
+### 3. Modal para "Nova Disciplina"
+- **Problema Atual:** `DashboardPage.jsx` renderiza `SubjectCreate` inline com `showCreateForm && <SubjectCreate />`.
+- **Decisão:** Envolver `SubjectCreate` dentro de uma div full‑screen (`fixed inset-0 z-50 bg-black/50`) que centralize o formulário, servindo como Modal. Adicionar botão de fechar (X) e garantir que clicar fora do formulário feche o modal.
 
-## Risks / Trade-offs
-- **[Risk] Z-Index Conflicts:** The new modal might conflict with the Sidebar or Navbar `z-index`.
-  - **Mitigation:** Ensure the Modal container has a `z-index` (e.g., `z-50`) higher than the Sidebar (`z-40`) and Navbar.
+## Riscos / Compensações
+- **[Risco] Conflito de Z-Index:** O novo modal pode conflitar com `z-index` da Sidebar ou Navbar.
+  - **Mitigação:** Assegurar que o container do Modal tenha `z-index` (ex.: `z-50`) maior que Sidebar (`z-40`) e Navbar.

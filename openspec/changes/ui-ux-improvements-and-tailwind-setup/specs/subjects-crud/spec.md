@@ -1,29 +1,29 @@
-## MODIFIED Requirements
+## Requisitos MODIFICADOS
 
-### Requirement: View Subjects with Modern UI
-The system SHALL display a list of all subjects to the user using a modern, responsive card-based layout built with Tailwind CSS.
+### Requisito: Visualizar Disciplinas com UI Moderna
+O sistema DEVE exibir uma lista de todas as disciplinas ao usuário usando um layout moderno e responsivo em cartões, construído com Tailwind CSS.
 
-#### Scenario: View Subject List
-- **WHEN** a user navigates to the subjects page.
-- **THEN** a `GET` request is sent to the `/subjects` endpoint.
-- **AND** the system SHALL display the subjects in a responsive grid of cards styled with Tailwind CSS.
-- **AND** each card SHALL have rounded corners, a shadow, and appropriate padding.
-- **AND** the plain CSS for subjects in `App.css` SHALL be removed.
+#### Cenário: Visualizar Lista de Disciplinas
+- **QUANDO** o usuário navegar para a página de disciplinas.
+- **ENTÃO** deverá ser enviada uma requisição `GET` ao endpoint `/subjects`.
+- **E** o sistema DEVE mostrar as disciplinas em uma grade responsiva de cartões estilizados com Tailwind CSS.
+- **E** cada cartão DEVE ter cantos arredondados, sombra e espaçamento adequado.
+- **E** o CSS legado referente a disciplinas em `App.css` DEVE ser removido.
 
-### Requirement: Create Subject with Modern Form
-The system SHALL allow users to create a new subject using a form styled with Tailwind CSS.
+### Requisito: Criar Disciplina com Formulário Moderno
+O sistema DEVE permitir que usuários criem novas disciplinas usando um formulário estilizado com Tailwind CSS.
 
-#### Scenario: View Create Subject Form
-- **WHEN** a user navigates to the "Create Subject" page.
-- **THEN** a form with fields for all subject attributes SHALL be displayed.
-- **AND** all form elements (labels, inputs, buttons) SHALL be styled using Tailwind CSS utility classes for a professional appearance.
-- **AND** a "Cancel" button SHALL be present that navigates the user back to the subjects list.
+#### Cenário: Visualizar Formulário de Criação
+- **QUANDO** o usuário acessar a página "Criar Disciplina".
+- **ENTÃO** deverá ser exibido um formulário com campos para todos os atributos da disciplina.
+- **E** todos os elementos do formulário (labels, inputs, botões) DEVERÃO ser estilizados com classes utilitárias do Tailwind para aparência profissional.
+- **E** deverá existir um botão "Cancelar" que leve o usuário de volta à lista de disciplinas.
 
-### Requirement: Update Subject with Modern Form
-The system SHALL allow users to edit the details of an existing subject using a form styled with Tailwind CSS.
+### Requisito: Atualizar Disciplina com Formulário Moderno
+O sistema DEVE permitir que usuários editem os detalhes de uma disciplina existente usando um formulário estilizado com Tailwind CSS.
 
-#### Scenario: View Edit Subject Form
-- **WHEN** a user navigates to the "Edit Subject" page.
-- **THEN** a form pre-populated with the subject's details SHALL be displayed.
-- **AND** all form elements SHALL be styled using Tailwind CSS.
-- **AND** a "Cancel" button SHALL be present that navigates the user back to the subjects list.
+#### Cenário: Visualizar Formulário de Edição
+- **QUANDO** o usuário acessar a página "Editar Disciplina".
+- **ENTÃO** deverá ser exibido um formulário pré‑preenchido com os dados da disciplina.
+- **E** todos os elementos do formulário DEVERÃO ser estilizados com Tailwind CSS.
+- **E** deverá existir um botão "Cancelar" que leve o usuário de volta à lista de disciplinas.

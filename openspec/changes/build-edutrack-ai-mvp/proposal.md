@@ -1,33 +1,33 @@
-## Why
+## Por que
 
-This change initiates the development of the EduTrack AI application, a personalized educational assistant. The goal is to provide students with a tool to manage disciplines, track tasks, and monitor academic progress, as detailed in the project specification. This work follows the user's request to begin production based on the provided documentation.
+Esta alteração inicia o desenvolvimento da aplicação EduTrack AI, um assistente educacional personalizado. O objetivo é fornecer aos estudantes uma ferramenta para gerenciar disciplinas, acompanhar tarefas e monitorar o progresso acadêmico, conforme especificado no projeto. Este trabalho segue a solicitação do usuário para começar a produção com base na documentação fornecida.
 
-## What Changes
+## O que será alterado
 
-- **New Application**: Scaffolding and development of the EduTrack AI MVP.
-- **Backend Setup**: Implementation of the database schema and APIs in Xano.
-- **Frontend Setup**: Creation of a React/React Native application for the user interface.
-- **Core Features**:
-  - User authentication (signup, login).
-  - Management of academic disciplines (subjects).
-  - Management of tasks associated with disciplines.
-  - A dashboard to visualize progress.
+- **Nova Aplicação**: Scaffold e desenvolvimento do MVP EduTrack AI.
+- **Configuração do Backend**: Implementação do esquema de banco de dados e APIs no Xano.
+- **Configuração do Frontend**: Criação de uma aplicação React/React Native para a interface do usuário.
+- **Funcionalidades Principais**:
+  - Autenticação de usuários (cadastro, login).
+  - Gerenciamento de disciplinas acadêmicas (`subjects`).
+  - Gerenciamento de tarefas associadas às disciplinas.
+  - Um dashboard para visualizar o progresso.
 
-## Capabilities
+## Capacidades
 
-### New Capabilities
-- `user-auth`: Handles user registration, login, and session management.
-- `subject-management`: Covers creating, reading, updating, and deleting academic subjects.
-- `task-management`: Manages tasks linked to subjects, including their status and deadlines.
-- `dashboard`: Provides a visual overview of a student's progress, including completion percentages and other metrics.
+### Novas Capacidades
+- `user-auth`: Gerencia registro, login e sessão do usuário.
+- `subject-management`: CRUD de disciplinas acadêmicas.
+- `task-management`: Gerencia tarefas vinculadas às disciplinas, incluindo status e prazos.
+- `dashboard`: Fornece visão geral do progresso do estudante, incluindo percentuais de conclusão e outras métricas.
 
-### Modified Capabilities
-- None
+### Capacidades Modificadas
+- Nenhuma
 
-## Impact
+## Impacto
 
-- **Codebase**: This will create a new, fully functional application.
-- **Backend**: A new Xano backend will be built, including database tables, APIs, and business logic using XanoScript.
-- **Frontend**: A new React/React Native application will be developed to interact with the backend.
-- **Custom Logic**: Node.js scripts will be created for complex calculations and data processing as specified in the project docs.
-- **Tooling**: The development process will be guided by OpenSpec and the agent-based workflow defined in `docs/xanoscript-dev-guide.md`.
+- **Codebase**: Criará uma nova aplicação funcional.
+- **Backend**: Um novo backend Xano será construído, incluindo tabelas, APIs e lógica de negócio em XanoScript.
+- **Frontend**: Uma nova aplicação React/React Native será desenvolvida para interagir com o backend.
+- **Lógica Customizada**: Scripts Node.js serão criados para cálculos e processamento de dados complexos, conforme a documentação do projeto.
+- **Ferramentas**: O processo de desenvolvimento será guiado pelo OpenSpec e pelo fluxo de trabalho baseado em agentes em `docs/xanoscript-dev-guide.md`.
