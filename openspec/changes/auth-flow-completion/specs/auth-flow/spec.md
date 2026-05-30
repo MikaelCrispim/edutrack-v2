@@ -1,19 +1,19 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Verify Registration via Code
-The system SHALL require users to verify their registration using a code sent to their email.
+### Requisito: Verificar Registro via Código
+O sistema DEVE exigir que os usuários verifiquem seu registro usando um código enviado para seu e-mail.
 
-#### Scenario: User registers successfully
-- **WHEN** the user submits valid registration details
-- **THEN** the system SHALL transition to a verification step.
-- **AND** the system SHALL prompt the user for a verification code.
-- **AND** upon entering the correct code, the user SHALL be logged in.
+#### Cenário: Usuário se registra com sucesso
+- **QUANDO** o usuário envia dados de registro válidos
+- **ENTÃO** o sistema DEVE transitar para uma etapa de verificação.
+- **E** o sistema DEVE solicitar ao usuário um código de verificação.
+- **E** ao inserir o código correto, o usuário DEVE ser autenticado no sistema.
 
-### Requirement: Verify Password Reset via Code
-The system SHALL require a verification code to authorize a password reset.
+### Requisito: Verificar Redefinição de Senha via Código
+O sistema DEVE exigir um código de verificação para autorizar uma redefinição de senha.
 
-#### Scenario: User requests a password reset
-- **WHEN** the user submits their email for a password reset
-- **THEN** the system SHALL transition to a verification step.
-- **AND** the system SHALL prompt the user for a verification code and a new password.
-- **AND** upon entering the correct code and a valid new password, the system SHALL update the password and direct the user to log in.
+#### Cenário: Usuário solicita redefinição de senha
+- **QUANDO** o usuário envia seu e-mail para redefinição de senha
+- **ENTÃO** o sistema DEVE transitar para uma etapa de verificação.
+- **E** o sistema DEVE solicitar ao usuário um código de verificação e uma nova senha.
+- **E** ao inserir o código correto e uma nova senha válida, o sistema DEVE atualizar a senha e direcionar o usuário para a página de login.

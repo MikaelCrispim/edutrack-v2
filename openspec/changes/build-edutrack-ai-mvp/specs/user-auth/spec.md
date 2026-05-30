@@ -1,36 +1,36 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: User Registration
-The system SHALL allow a new user to register with an email and password.
+### Requisito: Registro de Usuário
+O sistema DEVE permitir que um novo usuário se registre com um e-mail e senha.
 
-#### Scenario: Successful Registration
-- **WHEN** a user submits the registration form with a valid, unique email and a strong password
-- **THEN** a new user account is created
-- **AND** the user is logged into the application.
+#### Cenário: Registro com Sucesso
+- **QUANDO** um usuário enviar o formulário de registro com um e-mail válido e exclusivo e uma senha forte
+- **ENTÃO** uma nova conta de usuário DEVE ser criada
+- **E** o usuário DEVE ser conectado à aplicação.
 
-#### Scenario: Registration with Existing Email
-- **WHEN** a user submits the registration form with an email that already exists
-- **THEN** the system SHALL show an error message indicating the email is already in use.
+#### Cenário: Registro com E-mail Existente
+- **QUANDO** um usuário enviar o formulário de registro com um e-mail que já existe no sistema
+- **ENTÃO** o sistema DEVE exibir uma mensagem de erro indicando que o e-mail já está em uso.
 
-### Requirement: User Login
-The system SHALL allow a registered user to log in with their email and password.
+### Requisito: Login de Usuário
+O sistema DEVE permitir que um usuário registrado faça login com seu e-mail e senha.
 
-#### Scenario: Successful Login
-- **WHEN** a user submits the login form with correct credentials
-- **THEN** the user is authenticated
-- **AND** a session token (JWT) is issued.
+#### Cenário: Login com Sucesso
+- **QUANDO** um usuário enviar o formulário de login com as credenciais corretas
+- **ENTÃO** o usuário DEVE ser autenticado
+- **E** um token de sessão (JWT) DEVE ser emitido.
 
-#### Scenario: Login with Incorrect Credentials
-- **WHEN** a user submits the login form with an incorrect email or password
-- **THEN** the system SHALL show an error message indicating invalid credentials.
+#### Cenário: Login com Credenciais Incorretas
+- **QUANDO** um usuário enviar o formulário de login com um e-mail ou senha incorretos
+- **ENTÃO** o sistema DEVE exibir uma mensagem de erro indicando credenciais inválidas.
 
-### Requirement: Password Recovery
-The system SHALL provide a mechanism for users to reset their password.
+### Requisito: Recuperação de Senha
+O sistema DEVE fornecer um mecanismo para que os usuários redefinam sua senha.
 
-#### Scenario: Password Reset Request
-- **WHEN** a user requests a password reset for a valid email address
-- **THEN** the system SHALL send an email with a password reset link.
+#### Cenário: Solicitação de Redefinição de Senha
+- **QUANDO** um usuário solicitar a redefinição de senha para um endereço de e-mail válido
+- **ENTÃO** o sistema DEVE enviar um e-mail com um link para redefinição de senha.
 
-#### Scenario: Successful Password Reset
-- **WHEN** a user follows the reset link and submits a new password
-- **THEN** the user's password SHALL be updated.
+#### Cenário: Redefinição de Senha com Sucesso
+- **QUANDO** um usuário seguir o link de redefinição e enviar uma nova senha
+- **ENTÃO** a senha do usuário DEVE ser atualizada.

@@ -1,53 +1,53 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Create Subject
-The system SHALL allow users to create a new subject by providing a name, professor, course load, description, start date, and end date.
+### Requisito: Criar Disciplina
+O sistema DEVE permitir que os usuários criem uma nova disciplina inserindo nome, professor, carga horária, descrição, data de início e data de fim.
 
-#### Scenario: Successful Subject Creation
-- **WHEN** a user fills out the new subject form with valid data and clicks "Create".
-- **THEN** a `POST` request is sent to the `/subjects` endpoint.
-- **AND** the system navigates the user to the subjects list page.
-- **AND** the newly created subject appears in the list.
+#### Cenário: Criação de Disciplina com Sucesso
+- **QUANDO** um usuário preencher o formulário de nova disciplina com dados válidos e clicar em "Criar".
+- **ENTÃO** uma requisição `POST` DEVE ser enviada para o endpoint `/subjects`.
+- **E** o sistema DEVE navegar o usuário para a página de lista de disciplinas.
+- **E** a disciplina recém-criada DEVE aparecer na lista.
 
-#### Scenario: Invalid Data for Subject Creation
-- **WHEN** a user attempts to create a subject with missing required fields (e.g., name).
-- **THEN** the form SHALL display validation errors next to the invalid fields.
-- **AND** no `POST` request is sent to the server.
+#### Cenário: Dados Inválidos na Criação de Disciplina
+- **QUANDO** um usuário tentar criar uma disciplina com campos obrigatórios ausentes (ex.: nome).
+- **ENTÃO** o formulário DEVE exibir erros de validação ao lado dos campos inválidos.
+- **E** nenhuma requisição `POST` DEVE ser enviada ao servidor.
 
-### Requirement: View Subjects
-The system SHALL display a list of all subjects to the user.
+### Requisito: Visualizar Disciplinas
+O sistema DEVE exibir uma lista de todas as disciplinas para o usuário.
 
-#### Scenario: View Subject List
-- **WHEN** a user navigates to the subjects page.
-- **THEN** a `GET` request is sent to the `/subjects` endpoint.
-- **AND** the system SHALL display the subjects in a responsive grid of cards.
-- **AND** each card SHALL display the subject's name, professor, and other key details.
+#### Cenário: Visualizar Lista de Disciplinas
+- **QUANDO** um usuário navegar para a página de disciplinas.
+- **ENTÃO** uma requisição `GET` DEVE ser enviada para o endpoint `/subjects`.
+- **E** o sistema DEVE exibir as disciplinas em uma grade responsiva de cartões.
+- **E** cada cartão DEVE exibir o nome da disciplina, o professor e outros detalhes fundamentais.
 
-### Requirement: Update Subject
-The system SHALL allow users to edit the details of an existing subject.
+### Requisito: Atualizar Disciplina
+O sistema DEVE permitir que os usuários editem os detalhes de uma disciplina existente.
 
-#### Scenario: Successful Subject Update
-- **WHEN** a user clicks the "Edit" button on a subject card.
-- **THEN** the user is navigated to the edit page for that subject.
-- **AND** the form is pre-populated with the subject's current details.
-- **WHEN** the user modifies the details and clicks "Save".
-- **THEN** a `PATCH` (or `PUT`) request is sent to the `/subjects/{id}` endpoint with the updated data.
-- **AND** the user is navigated back to the subjects list page.
-- **AND** the list reflects the updated subject information.
+#### Cenário: Atualização de Disciplina com Sucesso
+- **QUANDO** um usuário clicar no botão "Editar" em um cartão de disciplina.
+- **ENTÃO** o usuário DEVE ser direcionado para a página de edição dessa disciplina.
+- **E** o formulário DEVE estar pré-preenchido com os detalhes atuais da disciplina.
+- **QUANDO** o usuário modificar os detalhes e clicar em "Salvar".
+- **ENTÃO** uma requisição `PATCH` (ou `PUT`) DEVE ser enviada para o endpoint `/subjects/{id}` com os dados atualizados.
+- **E** o usuário DEVE retornar para a página de lista de disciplinas.
+- **E** a lista DEVE refletir as informações atualizadas da disciplina.
 
-### Requirement: Delete Subject
-The system SHALL allow users to delete a subject.
+### Requisito: Excluir Disciplina
+O sistema DEVE permitir que os usuários excluam uma disciplina.
 
-#### Scenario: Successful Subject Deletion
-- **WHEN** a user clicks the "Delete" button on a subject card.
-- **THEN** a confirmation prompt SHALL be displayed.
-- **WHEN** the user confirms the deletion.
-- **THEN** a `DELETE` request is sent to the `/subjects/{id}` endpoint.
-- **AND** the subject is removed from the list in the UI without a page reload.
+#### Cenário: Exclusão de Disciplina com Sucesso
+- **QUANDO** um usuário clicar no botão "Excluir" em um cartão de disciplina.
+- **ENTÃO** uma mensagem de confirmação DEVE ser exibida.
+- **QUANDO** o usuário confirmar a exclusão.
+- **ENTÃO** uma requisição `DELETE` DEVE ser enviada para o endpoint `/subjects/{id}`.
+- **E** a disciplina DEVE ser removida da lista na interface do usuário sem a necessidade de recarregar a página.
 
-#### Scenario: Cancel Subject Deletion
-- **WHEN** a user clicks the "Delete" button on a subject card.
-- **THEN** a confirmation prompt SHALL be displayed.
-- **WHEN** the user cancels the deletion.
-- **THEN** no `DELETE` request is sent.
-- **AND** the subject remains in the list.
+#### Cenário: Cancelar Exclusão de Disciplina
+- **QUANDO** um usuário clicar no botão "Excluir" em um cartão de disciplina.
+- **ENTÃO** uma mensagem de confirmação DEVE ser exibida.
+- **QUANDO** o usuário cancelar a exclusão.
+- **ENTÃO** nenhuma requisição `DELETE` DEVE ser enviada.
+- **E** a disciplina DEVE permanecer na lista.

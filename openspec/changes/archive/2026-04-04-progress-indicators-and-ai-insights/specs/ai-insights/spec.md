@@ -1,15 +1,15 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Display AI-Generated Insights
-The system SHALL display AI-generated insights on the user's dashboard.
+### Requisito: Exibir Insights Gerados por IA
+O sistema DEVE exibir insights gerados por IA no painel (dashboard) do usuário.
 
-#### Scenario: User views AI insights
-- **WHEN** a user navigates to the dashboard
-- **THEN** the system SHALL display a list of personalized, AI-generated insights related to their academic progress.
+#### Cenário: Usuário visualiza insights de IA
+- **QUANDO** um usuário navegar para o painel
+- **ENTÃO** o sistema DEVE exibir uma lista de insights personalizados gerados por IA sobre o seu progresso acadêmico.
 
-### Requirement: Fetch AI-Generated Insights
-The system SHALL provide an API endpoint to fetch AI-generated insights.
+### Requisito: Buscar Insights Gerados por IA
+O sistema DEVE fornecer um endpoint de API para buscar os insights gerados por IA.
 
-#### Scenario: Frontend fetches AI insights
-- **WHEN** the frontend sends a GET request to `/api/ai/insights`
-- **THEN** the backend SHALL return a JSON object containing a list of AI-generated insights, each with text and a creation date.
+#### Cenário: Frontend busca insights de IA
+- **QUANDO** o frontend enviar uma requisição `GET` para `/api/ai/insights`
+- **ENTÃO** o backend DEVE retornar um objeto JSON contendo uma lista de insights gerados por IA, cada um com texto e data de criação.

@@ -1,21 +1,21 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Responsive Navigation
-The system SHALL provide a navigation sidebar that adapts to the user's screen size without overlapping content inappropriately.
+### Requisito: Navegação Responsiva
+O sistema DEVE fornecer uma barra lateral (sidebar) de navegação que se adapte ao tamanho da tela do usuário, sem sobrepor o conteúdo inadequadamente.
 
-#### Scenario: User views app on desktop
-- **WHEN** the user views the application on a screen wider than 1024px
-- **THEN** the sidebar SHALL be statically positioned alongside the main content, not overlapping it.
+#### Cenário: Usuário visualiza o aplicativo no desktop
+- **QUANDO** o usuário visualizar o aplicativo em uma tela com largura maior que 1024px
+- **ENTÃO** a barra lateral DEVE estar posicionada de forma estática ao lado do conteúdo principal, sem sobrepô-lo.
 
-### Requirement: Modal Subject Creation
-The system SHALL allow users to create new subjects via a modal overlay to preserve the dashboard context.
+### Requisito: Criação de Disciplina em Modal
+O sistema DEVE permitir que os usuários criem novas disciplinas por meio de um modal sobreposto (overlay) para preservar o contexto do painel (dashboard).
 
-#### Scenario: User clicks "New Subject"
-- **WHEN** the user clicks the "New Subject" button on the dashboard
-- **THEN** a modal overlay SHALL appear over the dashboard content, dimming the background.
-- **AND** the subject creation form SHALL be displayed in the center of the modal.
+#### Cenário: Usuário clica em "Nova Disciplina"
+- **QUANDO** o usuário clicar no botão "Nova Disciplina" no painel
+- **ENTÃO** uma tela sobreposta (modal) DEVE aparecer sobre o conteúdo do painel, escurecendo o fundo.
+- **E** o formulário de criação de disciplina DEVE ser exibido no centro do modal.
 
-#### Scenario: User dismisses the modal
-- **GIVEN** the "New Subject" modal is open
-- **WHEN** the user clicks the close button or successfully creates a subject
-- **THEN** the modal SHALL close, revealing the fully interactive dashboard.
+#### Cenário: Usuário descarta o modal
+- **DADO** que o modal "Nova Disciplina" está aberto
+- **QUANDO** o usuário clicar no botão de fechar ou criar uma disciplina com sucesso
+- **ENTÃO** o modal DEVE fechar, revelando o painel totalmente interativo.

@@ -1,16 +1,16 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Display Dashboard Summary Metrics
-The system SHALL display a visual summary of the user's progress on the main dashboard.
+### Requisito: Exibir Métricas de Resumo do Painel
+O sistema DEVE exibir um resumo visual do progresso do usuário no painel principal (dashboard).
 
-#### Scenario: User views the dashboard
-- **WHEN** the user navigates to the dashboard page
-- **THEN** the system SHALL fetch the user's summary metrics (Total Subjects, Pending Activities, Completion Percentage) from the backend.
-- **AND** the system SHALL display a loading indicator while the data is being fetched.
-- **AND** upon successful retrieval, the system SHALL display the metrics in clearly separated cards.
+#### Cenário: Usuário visualiza o painel
+- **QUANDO** o usuário navegar para a página do painel
+- **ENTÃO** o sistema DEVE buscar as métricas de resumo do usuário (Total de Disciplinas, Atividades Pendentes, Percentual de Conclusão) no backend.
+- **E** o sistema DEVE exibir um indicador de carregamento enquanto os dados estão sendo buscados.
+- **E** após a recuperação dos dados com sucesso, o sistema DEVE exibir as métricas em cartões claramente separados.
 
-#### Scenario: Backend fails to return summary data
-- **WHEN** the user navigates to the dashboard page
-- **AND** the request to fetch summary metrics fails
-- **THEN** the system SHALL display a user-friendly error message within the summary section.
-- **AND** the rest of the dashboard SHALL continue to function normally.
+#### Cenário: O backend falha em retornar dados do resumo
+- **QUANDO** o usuário navegar para a página do painel
+- **E** a requisição para buscar as métricas de resumo falhar
+- **ENTÃO** o sistema DEVE exibir uma mensagem de erro amigável na seção de resumo.
+- **E** o restante do painel DEVE continuar a funcionar normalmente.

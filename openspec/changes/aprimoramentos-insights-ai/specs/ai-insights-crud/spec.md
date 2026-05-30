@@ -1,11 +1,11 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Delete AI Insight
-The system SHALL allow users to delete individual AI insights from their dashboard.
+### Requisito: Excluir Insight de IA
+O sistema DEVE permitir que os usuários excluam insights de IA individuais de seu painel.
 
-#### Scenario: User deletes an insight
-- **GIVEN** a user has at least one AI insight displayed on their dashboard
-- **WHEN** the user clicks the delete button associated with a specific insight
-- **THEN** the system SHALL send a request to delete the insight.
-- **AND** the system SHALL temporarily disable the delete button or show a loading indicator.
-- **AND** upon successful deletion, the system SHALL remove the insight from the display without requiring a full page reload.
+#### Cenário: Usuário exclui um insight
+- **DADO** que um usuário tem pelo menos um insight de IA exibido em seu painel
+- **QUANDO** o usuário clicar no botão de exclusão associado a um insight específico
+- **ENTÃO** o sistema DEVE enviar uma requisição para excluir o insight.
+- **E** o sistema DEVE desativar temporariamente o botão de exclusão ou exibir um indicador de carregamento.
+- **E** após a exclusão bem-sucedida, o sistema DEVE remover o insight da visualização sem requerer um recarregamento completo da página.

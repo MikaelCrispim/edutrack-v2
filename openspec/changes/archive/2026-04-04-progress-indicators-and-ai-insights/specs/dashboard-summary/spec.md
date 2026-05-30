@@ -1,15 +1,15 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Display Dashboard Summary
-The system SHALL display a summary of the user's academic progress on the dashboard.
+### Requisito: Exibir Resumo no Painel
+O sistema DEVE exibir um resumo do progresso acadêmico do usuário no painel (dashboard).
 
-#### Scenario: User views dashboard summary
-- **WHEN** a user navigates to the dashboard
-- **THEN** the system SHALL display the total number of subjects, the number of pending activities, and the overall completion percentage.
+#### Cenário: Usuário visualiza resumo do painel
+- **QUANDO** um usuário navegar para o painel
+- **ENTÃO** o sistema DEVE exibir a quantidade total de disciplinas, o número de atividades pendentes e a porcentagem geral de conclusão.
 
-### Requirement: Fetch Dashboard Summary Data
-The system SHALL provide an API endpoint to fetch the dashboard summary data.
+### Requisito: Buscar Dados do Resumo do Painel
+O sistema DEVE fornecer um endpoint de API para buscar os dados de resumo do painel.
 
-#### Scenario: Frontend fetches summary data
-- **WHEN** the frontend sends a GET request to `/api/dashboard/summary`
-- **THEN** the backend SHALL return a JSON object containing `totalSubjects`, `pendingActivities`, and `completionPercentage`.
+#### Cenário: Frontend busca dados do resumo
+- **QUANDO** o frontend enviar uma requisição `GET` para `/api/dashboard/summary`
+- **ENTÃO** o backend DEVE retornar um objeto JSON contendo `totalSubjects`, `pendingActivities` e `completionPercentage`.

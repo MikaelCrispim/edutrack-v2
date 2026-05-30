@@ -1,10 +1,10 @@
-## 1. API Integration
-- [x] 1.1 In `frontend/src/api.js`, add `deleteAIInsight(id)` that makes a `DELETE` request to `/ai_insights/${id}`.
+## 1. Integração com a API
+- [x] 1.1 Em `frontend/src/api.js`, adicionar `deleteAIInsight(id)` que faz uma requisição `DELETE` para `/ai_insights/${id}`.
 
-## 2. Component Implementation (`AIInsights.jsx`)
-- [x] 2.1 Import `deleteAIInsight` in `AIInsights.jsx`.
-- [x] 2.2 Add a new state `deletingId` to track which insight is currently being deleted (to show a spinner on that specific card).
-- [x] 2.3 Create a function `handleDeleteInsight(id)` that calls the API, handles errors, and then calls `fetchInsights()` to refresh the list.
-- [x] 2.4 Update the insight card JSX to include a delete button (e.g., a trash can icon `🗑️`).
-- [x] 2.5 Style the delete button to be visually distinct but unobtrusive (e.g., positioned absolute top-right, visible on hover, or simply grayed out until hovered).
-- [x] 2.6 Refine the overall CSS classes for the insight cards to improve readability (e.g., adjusting margins, padding, or shadow).
+## 2. Implementação do Componente (`AIInsights.jsx`)
+- [x] 2.1 Importar `deleteAIInsight` em `AIInsights.jsx`.
+- [x] 2.2 Adicionar um novo estado `deletingId` para rastrear qual insight está sendo excluído atualmente (para exibir um spinner no cartão específico).
+- [x] 2.3 Criar uma função `handleDeleteInsight(id)` que chama a API, trata erros e então chama `fetchInsights()` para atualizar a lista.
+- [x] 2.4 Atualizar o JSX do cartão de insight para incluir um botão de exclusão (ex.: um ícone de lixeira `🗑️`).
+- [x] 2.5 Estilizar o botão de exclusão para ser visualmente distinto, mas discreto (ex.: posicionado de forma absoluta no canto superior direito, visível ao passar o mouse ou cinza por padrão até o hover).
+- [x] 2.6 Refinar as classes CSS gerais dos cartões de insight para melhorar a legibilidade (ex.: ajustando margens, espaçamento interno ou sombra).

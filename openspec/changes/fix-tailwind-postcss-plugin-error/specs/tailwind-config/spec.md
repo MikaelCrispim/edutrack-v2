@@ -1,9 +1,9 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Correct PostCSS Configuration
-The system's build process SHALL correctly configure PostCSS to use the `@tailwindcss/postcss` plugin.
+### Requisito: Configuração Correta do PostCSS
+O processo de build do sistema DEVE configurar corretamente o PostCSS para usar o plugin `@tailwindcss/postcss`.
 
-#### Scenario: Successful Build
-- **WHEN** the developer runs the Vite development server.
-- **THEN** the application SHALL build and start without any PostCSS or Tailwind CSS related errors.
-- **AND** the Tailwind CSS classes used in the components SHALL be correctly processed and applied.
+#### Cenário: Build com Sucesso
+- **QUANDO** o desenvolvedor iniciar o servidor de desenvolvimento do Vite
+- **ENTÃO** a aplicação DEVE compilar e iniciar sem quaisquer erros relacionados a PostCSS ou Tailwind CSS.
+- **E** as classes do Tailwind CSS usadas nos componentes DEVEM ser processadas e aplicadas corretamente.

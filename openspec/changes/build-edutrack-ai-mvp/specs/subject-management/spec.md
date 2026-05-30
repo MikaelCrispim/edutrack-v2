@@ -1,30 +1,30 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Create Subject
-The system SHALL allow a logged-in user to create a new academic subject.
+### Requisito: Criar Disciplina
+O sistema DEVE permitir que um usuário autenticado crie uma nova disciplina acadêmica.
 
-#### Scenario: Successful Subject Creation
-- **WHEN** a user submits the form to create a new subject with all required fields (name, professor, course load, description, start/end dates)
-- **THEN** a new subject record is created and associated with the current user.
+#### Cenário: Criação de Disciplina com Sucesso
+- **QUANDO** um usuário enviar o formulário para criar uma nova disciplina com todos os campos obrigatórios (nome, professor, carga horária, descrição, datas de início/fim)
+- **ENTÃO** um novo registro de disciplina DEVE ser criado e associado ao usuário atual.
 
-### Requirement: View Subjects
-The system SHALL allow a user to view a list of all their subjects.
+### Requisito: Visualizar Disciplinas
+O sistema DEVE permitir que um usuário visualize uma lista de todas as suas disciplinas.
 
-#### Scenario: Display Subjects
-- **WHEN** a user navigates to the subjects list
-- **THEN** the system SHALL display all subjects created by that user.
+#### Cenário: Exibir Disciplinas
+- **QUANDO** um usuário navegar para a lista de disciplinas
+- **ENTÃO** o sistema DEVE exibir todas as disciplinas criadas por esse usuário.
 
-### Requirement: Edit Subject
-The system SHALL allow a user to edit the details of an existing subject they own.
+### Requisito: Editar Disciplina
+O sistema DEVE permitir que um usuário edite os detalhes de uma disciplina existente de sua propriedade.
 
-#### Scenario: Successful Subject Update
-- **WHEN** a user updates the details of a subject and saves the changes
-- **THEN** the subject's record SHALL be updated with the new information.
+#### Cenário: Atualização de Disciplina com Sucesso
+- **QUANDO** um usuário atualizar os detalhes de uma disciplina e salvar as alterações
+- **ENTÃO** o registro da disciplina DEVE ser atualizado com as novas informações.
 
-### Requirement: Delete Subject
-The system SHALL allow a user to delete a subject they own.
+### Requisito: Excluir Disciplina
+O sistema DEVE permitir que um usuário exclua uma disciplina de sua propriedade.
 
-#### Scenario: Successful Subject Deletion
-- **WHEN** a user chooses to delete a subject
-- **THEN** the subject record SHALL be removed from the system.
-- **AND** all associated tasks SHALL also be deleted.
+#### Cenário: Exclusão de Disciplina com Sucesso
+- **QUANDO** um usuário optar por excluir uma disciplina
+- **ENTÃO** o registro da disciplina DEVE ser removido do sistema.
+- **E** todas as tarefas associadas também DEVEM ser excluídas.

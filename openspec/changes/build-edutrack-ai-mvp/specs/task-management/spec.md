@@ -1,29 +1,29 @@
-## ADDED Requirements
+## Requisitos ADICIONADOS
 
-### Requirement: Create Task
-The system SHALL allow a user to create a new task and associate it with a subject.
+### Requisito: Criar Tarefa
+O sistema DEVE permitir que um usuário crie uma nova tarefa e a associe a uma disciplina.
 
-#### Scenario: Successful Task Creation
-- **WHEN** a user submits the form to create a new task with a title, description, due date, and associated subject
-- **THEN** a new task record is created and linked to the specified subject.
+#### Cenário: Criação de Tarefa com Sucesso
+- **QUANDO** um usuário enviar o formulário para criar uma nova tarefa com título, descrição, data de entrega e disciplina associada
+- **ENTÃO** um novo registro de tarefa DEVE ser criado e vinculado à disciplina especificada.
 
-### Requirement: View Tasks for a Subject
-The system SHALL allow a user to view all tasks associated with a specific subject.
+### Requisito: Visualizar Tarefas de uma Disciplina
+O sistema DEVE permitir que um usuário visualize todas as tarefas associadas a uma disciplina específica.
 
-#### Scenario: Display Tasks
-- **WHEN** a user selects a subject
-- **THEN** the system SHALL display a list of all tasks for that subject.
+#### Cenário: Exibir Tarefas
+- **QUANDO** um usuário selecionar uma disciplina
+- **ENTÃO** o sistema DEVE exibir uma lista de todas as tarefas daquela disciplina.
 
-### Requirement: Update Task Status
-The system SHALL allow a user to update the status of a task (e.g., "Pending", "In Progress", "Completed").
+### Requisito: Atualizar Status da Tarefa
+O sistema DEVE permitir que um usuário atualize o status de uma tarefa (ex.: "Pendente", "Em Andamento", "Concluída").
 
-#### Scenario: Mark Task as Completed
-- **WHEN** a user marks a task as "Completed"
-- **THEN** the task's status SHALL be updated to "Completed".
+#### Cenário: Marcar Tarefa como Concluída
+- **QUANDO** um usuário marcar uma tarefa como "Concluída"
+- **ENTÃO** o status da tarefa DEVE ser atualizado para "Concluída".
 
-### Requirement: Delete Task
-The system SHALL allow a user to delete a task.
+### Requisito: Excluir Tarefa
+O sistema DEVE permitir que um usuário exclua uma tarefa.
 
-#### Scenario: Successful Task Deletion
-- **WHEN** a user chooses to delete a task
-- **THEN** the task record SHALL be removed from the system.
+#### Cenário: Exclusão de Tarefa com Sucesso
+- **QUANDO** um usuário optar por excluir uma tarefa
+- **ENTÃO** o registro da tarefa DEVE ser removido do sistema.
