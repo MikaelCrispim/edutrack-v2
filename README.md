@@ -30,7 +30,6 @@ Diferente de gerenciadores de tarefas comuns, o EduTrack AI utiliza **Spec-Drive
 ### Backend & Lógica
 *   **Xano:** Plataforma No-Code/Low-Code para o banco de dados e APIs.
 *   **XanoScript:** Para automação e lógica de schemas.
-*   **Python (via OpenSpec):** Utilizado para cálculos complexos de métricas e geração de relatórios.
 *   **OpenSpec:** Metodologia de desenvolvimento guiado por especificações.
 
 ### Ferramentas de IA & Apoio
